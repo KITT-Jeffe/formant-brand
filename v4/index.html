@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formant — Brand System V4 · Bold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #111110;
+      --mid: #777770;
+      --light: #c8c8c0;
+      --pale: #e8e8e0;
+      --off-white: #f5f5f0;
+      --white: #ffffff;
+      --signal: #c0392b;
+      --signal-orange: #e84c1e;
+      --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { font-family: var(--font-sans); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
+
+    /* NAV — TE-style: very flat, mono, functional */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 2px solid var(--black);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 44px;
+    }
+    .nav-logo { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--black); letter-spacing: -0.01em; text-transform: uppercase; }
+    .nav-logo span { color: var(--signal); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-tag { font-family: var(--font-mono); font-size: 10px; font-weight: 600; color: var(--white); background: var(--black); padding: 3px 8px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--mid); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-back { font-family: var(--font-mono); font-size: 10px; color: var(--mid); text-decoration: none; }
+
+    /* LAYOUT */
+    .section { padding: 80px 24px; max-width: 800px; margin: 0 auto; }
+    .section-full { padding: 0; }
+    .section + .section { border-top: 2px solid var(--black); }
+
+    .label {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid);
+      margin-bottom: 32px;
+    }
+
+    /* HERO — big bold type, lots of white, TE energy */
+    .hero {
+      min-height: 100svh; background: var(--white);
+      display: grid; grid-template-rows: 1fr auto;
+      border-bottom: 2px solid var(--black);
+    }
+
+    .hero-content {
+      padding: 48px 24px 48px;
+      max-width: 800px; margin: 0 auto; width: 100%;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+
+    .hero-counter {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--light);
+      margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .hero-counter-dot { width: 8px; height: 8px; background: var(--signal); }
+
+    .hero h1 {
+      font-size: clamp(56px, 14vw, 128px);
+      font-weight: 700; line-height: 0.88;
+      letter-spacing: -0.04em; color: var(--black);
+      margin-bottom: 32px; text-transform: uppercase;
+    }
+
+    .hero h1 span { color: var(--signal); display: block; }
+
+    .hero-sub {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 400;
+      color: var(--mid); line-height: 1.65; max-width: 48ch;
+      margin-bottom: 48px; border-left: 3px solid var(--signal); padding-left: 16px;
+    }
+
+    .hero-bar {
+      border-top: 2px solid var(--black); padding: 12px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase;
+      max-width: 100%;
+    }
+
+    /* BOLD TYPE SYSTEM */
+    .type-system { margin-top: 32px; }
+    .type-row { padding: 32px 0; border-bottom: 2px solid var(--black); }
+    .type-row:first-child { border-top: 2px solid var(--black); }
+    .type-meta { font-family: var(--font-mono); font-size: 9px; font-weight: 600; color: var(--light); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px; }
+    .t-display { font-size: clamp(56px, 14vw, 120px); font-weight: 700; line-height: 0.88; letter-spacing: -0.04em; text-transform: uppercase; color: var(--black); }
+    .t-headline { font-size: clamp(28px, 6vw, 52px); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; text-transform: uppercase; }
+    .t-body { font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--mid); max-width: 56ch; }
+    .t-mono { font-family: var(--font-mono); font-size: 12px; font-weight: 400; line-height: 1.6; color: var(--mid); }
+    .t-label { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--signal); }
+
+    /* COLORS */
+    .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 2px; margin-top: 32px; }
+    .color-cell { aspect-ratio: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; border: 2px solid transparent; }
+    .color-cell.bordered { border-color: var(--pale); }
+    .color-name { font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; }
+    .color-hex { font-family: var(--font-mono); font-size: 9px; font-weight: 400; opacity: 0.6; }
+
+    /* PHOTO */
+    .photo-grid { display: grid; gap: 2px; margin-top: 32px; }
+    .photo-frame { position: relative; overflow: hidden; background: var(--off-white); border: 2px solid var(--black); }
+    .photo-frame img { width: 100%; display: block; }
+    .photo-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: var(--black); padding: 10px 14px;
+      font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .photo-label span { color: var(--signal); }
+
+    /* ICONS — V4 style: bold stroke, uppercase labels */
+    .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 2px; margin-top: 32px; }
+    .icon-cell {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px 8px; background: var(--off-white);
+      border: 2px solid transparent; cursor: default; transition: all 0.1s;
+    }
+    .icon-cell:hover { background: var(--black); border-color: var(--black); }
+    .icon-cell:hover svg { color: var(--white); }
+    .icon-cell:hover .icon-label { color: var(--mid); }
+    .icon-cell.signal-icon svg { color: var(--signal); }
+    .icon-cell svg { width: 22px; height: 22px; color: var(--black); }
+    .icon-label { font-family: var(--font-mono); font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-align: center; }
+
+    /* COMPOSITIONS */
+    .comp-hero-v4 {
+      background: var(--black); padding: 72px 24px;
+      border-top: 2px solid var(--black); border-bottom: 2px solid var(--black);
+    }
+    .comp-inner { max-width: 800px; margin: 0 auto; }
+    .comp-tag { font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal); margin-bottom: 24px; }
+    .comp-headline { font-size: clamp(40px, 10vw, 88px); font-weight: 700; line-height: 0.9; letter-spacing: -0.04em; text-transform: uppercase; color: var(--white); margin-bottom: 24px; }
+    .comp-body { font-family: var(--font-mono); font-size: 13px; font-weight: 400; line-height: 1.65; color: var(--mid); max-width: 44ch; margin-bottom: 36px; }
+    .comp-cta {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--black); background: var(--white);
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 20px; text-decoration: none; border: none;
+    }
+    .comp-cta::after { content: '→'; }
+
+    /* DATA UI V4 */
+    .data-v4 { border: 2px solid var(--black); font-family: var(--font-mono); margin-top: 2px; overflow: hidden; }
+    .data-v4-header { background: var(--black); padding: 10px 16px; display: flex; justify-content: space-between; }
+    .data-v4-title { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+    .data-v4-status { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--signal); }
+    .data-v4-row { padding: 9px 16px; display: grid; grid-template-columns: 1fr auto; border-bottom: 1px solid var(--pale); background: var(--white); }
+    .data-v4-key { font-size: 10px; font-weight: 400; color: var(--mid); letter-spacing: 0.04em; }
+    .data-v4-val { font-size: 10px; font-weight: 600; color: var(--black); }
+    .data-v4-val.alert { color: var(--signal); }
+
+    /* LOGO */
+    .logo-cells { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 32px; }
+    .logo-cell { display: flex; align-items: center; justify-content: center; min-height: 140px; border: 2px solid var(--black); }
+    .logo-cell-black { background: var(--black); border-color: var(--black); }
+    .logo-cell-signal { background: var(--signal); border-color: var(--signal); }
+    .logotype-v4 { font-family: var(--font-mono); font-size: 24px; font-weight: 600; letter-spacing: -0.02em; text-transform: uppercase; }
+    .logotype-v4 .f { color: var(--signal); }
+    .logotype-v4-inv { color: var(--white); }
+    .logotype-v4-inv .f { color: var(--white); opacity: 0.5; }
+    .logo-sub-v4 { font-family: var(--font-mono); font-size: 8px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 6px; }
+    .logo-lockup { display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+    /* FOOTER */
+    footer { border-top: 2px solid var(--black); padding: 32px 24px; background: var(--white); }
+    .footer-inner { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-label { font-family: var(--font-mono); font-size: 10px; font-weight: 600; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8; }
+    .footer-v { font-family: var(--font-mono); font-size: 32px; font-weight: 700; color: var(--pale); letter-spacing: -0.04em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>F</span>ORMANT</div>
+  <div class="nav-right">
+    <div class="nav-tag">V4 · Bold</div>
+    <ul class="nav-links">
+      <li><a href="#positioning">Brand</a></li>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#type">Type</a></li>
+      <li><a href="#photo">Photo</a></li>
+      <li><a href="#icons">Icons</a></li>
+      <li><a href="#compositions">Use</a></li>
+    </ul>
+    <a class="nav-back" href="../versions.html">← All versions</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-counter"><div class="hero-counter-dot"></div>V4 · Bold · TE-influenced · Light</div>
+    <h1>Physical<br><span>AI.</span></h1>
+    <p class="hero-sub">47 streams. One signal that matters. Formant acts before you know to look.</p>
+  </div>
+  <div class="hero-bar">
+    <span>Formant.ai · March 2026</span>
+    <span>Physical Operations</span>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="section" id="positioning">
+  <div class="label">01 — Brand Positioning</div>
+  <div style="font-size: clamp(28px, 6vw, 52px); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; text-transform: uppercase; margin-bottom: 32px;">Signal in<br>the physical<br>world.</div>
+  <p style="font-size: 15px; font-weight: 400; line-height: 1.7; color: var(--mid); max-width: 56ch;">V4 leans into Teenage Engineering's visual conviction: bold weight, mono everywhere, hard borders, functional aesthetics. Nothing decorative. The design is honest about what it is.</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 40px;">
+    <div style="background: var(--off-white); padding: 24px; border: 2px solid transparent;">
+      <div style="font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal); margin-bottom: 10px;">Precise</div>
+      <div style="font-size: 14px; line-height: 1.6; color: var(--mid);">Specific data, specific units, specific time. Not "AI-powered" — a number that changes an outcome.</div>
+    </div>
+    <div style="background: var(--off-white); padding: 24px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal); margin-bottom: 10px;">Functional</div>
+      <div style="font-size: 14px; line-height: 1.6; color: var(--mid);">No decoration. No UI fluff. Every element earns its place. The design is the product.</div>
+    </div>
+    <div style="background: var(--off-white); padding: 24px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal); margin-bottom: 10px;">Intriguing</div>
+      <div style="font-size: 14px; line-height: 1.6; color: var(--mid);">Confidence that withholds. You sense there's more. You want to find out what.</div>
+    </div>
+    <div style="background: var(--off-white); padding: 24px;">
+      <div style="font-family: var(--font-mono); font-size: 9px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal); margin-bottom: 10px;">Physical</div>
+      <div style="font-size: 14px; line-height: 1.6; color: var(--mid);">Real machines, real operations, real consequence. Not a dashboard. The world that breaks when it fails.</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section class="section" id="color">
+  <div class="label">02 — Color System</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">White-dominant. Black as structure. Signal red — same as V1 — used for what matters. No gradients. Flat, honest.</p>
+  <div class="color-grid">
+    <div class="color-cell" style="background: #111110;"><div class="color-name" style="color: #777770;">Black<br><span class="color-hex">#111110</span></div></div>
+    <div class="color-cell" style="background: #777770;"><div class="color-name" style="color: #e8e8e0;">Mid<br><span class="color-hex">#777770</span></div></div>
+    <div class="color-cell" style="background: #c8c8c0;"><div class="color-name" style="color: #111110;">Light<br><span class="color-hex">#c8c8c0</span></div></div>
+    <div class="color-cell" style="background: #e8e8e0;"><div class="color-name" style="color: #777770;">Pale<br><span class="color-hex">#e8e8e0</span></div></div>
+    <div class="color-cell bordered" style="background: #ffffff;"><div class="color-name" style="color: #777770;">White<br><span class="color-hex">#ffffff</span></div></div>
+    <div class="color-cell" style="background: #c0392b; grid-column: span 2;"><div class="color-name" style="color: rgba(255,255,255,0.9);">Signal<br><span class="color-hex" style="color: rgba(255,255,255,0.6);">#c0392b</span></div></div>
+  </div>
+</section>
+
+<!-- TYPE -->
+<section class="section" id="type">
+  <div class="label">03 — Typography</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">Bold weight everywhere it counts. Mono as the primary voice — it's honest, legible, slightly industrial. The display weight is 700 uppercase. No apologies.</p>
+  <div class="type-system">
+    <div class="type-row">
+      <div class="type-meta">Display — IBM Plex Sans Bold 700 / Uppercase / −4% tracking</div>
+      <div class="t-display">Signal<br>found.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Headline — Bold 700 / Uppercase</div>
+      <div class="t-headline">Physical AI for operations<br>that can't afford to guess.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Body — IBM Plex Sans Regular / 1.7 leading</div>
+      <div class="t-body">Our agent monitors 47 simultaneous data streams. When unit 14's bearing temperature deviates 12 degrees from baseline, the agent doesn't wait. It already acted.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Mono / Data — IBM Plex Mono Regular</div>
+      <div class="t-mono">UNIT_14 · BEARING_TEMP +12.4°C · ANOMALY<br>PREDICTED_FAILURE 72H · ESCALATED 14:32 PST</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Label — IBM Plex Mono Bold / +12% tracking</div>
+      <div class="t-label">Physical Operations · Active · Fleet Monitor</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO -->
+<section class="section" id="photo">
+  <div class="label">04 — Photography</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">TE-influenced: the object on white. No context, no lifestyle, no studio setup. The machine as designed object. Bold shadows, clean light, generous white space. The thing itself — nothing else.</p>
+  <div class="photo-grid">
+    <div class="photo-frame" style="aspect-ratio: 1.5;">
+      <img src="v4-photo-1-object.png" alt="Object on white">
+      <div class="photo-label">Hardware as object<span>V4 · TE-influenced</span></div>
+    </div>
+    <div class="photo-frame" style="aspect-ratio: 1.5;">
+      <img src="v4-photo-2-product.png" alt="Product portrait">
+      <div class="photo-label">Product portrait<span>White · Bold shadow</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ICONS -->
+<section class="section" id="icons">
+  <div class="label">05 — Iconography</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">Same icon vocabulary, V4 expression — heavier stroke weight, hard edges, no rounding. Built to live at home alongside the bold type.</p>
+  <div class="icon-grid">
+    <div class="icon-cell signal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M2 12 Q5 4 8 12 Q11 20 14 12 Q17 4 20 12"/><circle cx="22" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg>
+      <div class="icon-label">Signal</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="3" y="8" width="10" height="8"/><path d="M13 11h4l3 3v2h-7V8"/><circle cx="6" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/></svg>
+      <div class="icon-label">Fleet</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="5" y="5" width="14" height="14"/><path d="M9 9h2M13 9h2M9 12h6M9 15h4"/></svg>
+      <div class="icon-label">Agent</div>
+    </div>
+    <div class="icon-cell signal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 17h14v4H5z"/></svg>
+      <div class="icon-label">Escalate</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="2" y="4" width="20" height="14"/><path d="M8 22h8M12 18v4"/><path d="M6 11 Q8 7 10 11 Q12 15 14 11 Q16 7 18 11" stroke-width="1.5"/></svg>
+      <div class="icon-label">Monitor</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><circle cx="12" cy="12" r="3"/><path d="M6.3 6.3A8 8 0 0 0 6.3 17.7M17.7 6.3A8 8 0 0 1 17.7 17.7"/></svg>
+      <div class="icon-label">Sensor</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M3 17 L8 10 L12 13 L16 6 L21 9"/><path d="M17 4h4v4"/><path d="M3 21h18" stroke-width="1"/></svg>
+      <div class="icon-label">Predict</div>
+    </div>
+    <div class="icon-cell signal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 3L2 21h20L12 3z"/><path d="M12 10v5M12 17v2"/></svg>
+      <div class="icon-label">Alert</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg>
+      <div class="icon-label">OK</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg>
+      <div class="icon-label">Schedule</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 4h16v16H4zM4 9h16M4 14h16M9 9v11M14 9v11"/></svg>
+      <div class="icon-label">Data</div>
+    </div>
+    <div class="icon-cell">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="6" height="6"/><path d="M9 6h6M18 9v6M9 18h6M6 9v6"/></svg>
+      <div class="icon-label">Integrate</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSITIONS -->
+<section class="section-full" id="compositions">
+  <div class="comp-hero-v4">
+    <div class="comp-inner">
+      <div class="comp-tag">Physical AI · Fleet Monitor · Active</div>
+      <div class="comp-headline">Already<br>knew.</div>
+      <div class="comp-body">72 hours before the failure, Formant's agent flagged unit 14. The operator hadn't noticed. The machine already had.</div>
+      <a class="comp-cta" href="#">See the platform</a>
+    </div>
+  </div>
+  <div style="max-width: 800px; margin: 0 auto; padding: 0 0 0 0; border-top: none;">
+    <div class="data-v4">
+      <div class="data-v4-header">
+        <div class="data-v4-title">Fleet · Unit 14 · Anomaly Active</div>
+        <div class="data-v4-status">● Alert</div>
+      </div>
+      <div class="data-v4-row"><div class="data-v4-key">bearing_temp_delta</div><div class="data-v4-val alert">+12.4°C</div></div>
+      <div class="data-v4-row"><div class="data-v4-key">vibration_rms</div><div class="data-v4-val alert">0.84 mm/s</div></div>
+      <div class="data-v4-row"><div class="data-v4-key">predicted_failure</div><div class="data-v4-val alert">72–96 hrs</div></div>
+      <div class="data-v4-row"><div class="data-v4-key">last_maintenance</div><div class="data-v4-val">47 days ago</div></div>
+      <div class="data-v4-row"><div class="data-v4-key">escalated</div><div class="data-v4-val">14:32:07 PST</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section class="section" id="logo">
+  <div class="label">07 — Logo · V4</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">Mono, bold, uppercase. The F-with-signal concept holds — in V4 it's expressed through weight rather than refinement.</p>
+  <div class="logo-cells">
+    <div class="logo-cell">
+      <div class="logo-lockup">
+        <div class="logotype-v4"><span class="f">F</span>ORMANT</div>
+        <div class="logo-sub-v4" style="color: var(--mid);">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-cell-black">
+      <div class="logo-lockup logotype-v4-inv">
+        <div class="logotype-v4" style="color: var(--white);"><span style="color: var(--signal);">F</span>ORMANT</div>
+        <div class="logo-sub-v4" style="color: var(--mid);">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-cell-signal">
+      <div class="logo-lockup">
+        <div class="logotype-v4" style="color: var(--white);"><span style="opacity: 0.6;">F</span>ORMANT</div>
+        <div class="logo-sub-v4" style="color: rgba(255,255,255,0.5);">Physical AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-label">Formant Brand V4 · Bold<br>March 2026</div>
+    <div class="footer-v">V4</div>
+  </div>
+</footer>
+
+</body>
+</html>

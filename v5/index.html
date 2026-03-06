@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formant — Brand System V5 · Graphic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;1,200&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #111110;
+      --mid: #888880;
+      --light: #c8c8c0;
+      --off-white: #f5f4f0;
+      --white: #ffffff;
+      --signal: #c0392b;
+      --signal-light: #f0e8e6;
+      --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { font-family: var(--font-sans); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid var(--light);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 52px;
+    }
+    .nav-logo {
+      font-family: var(--font-sans); font-size: 15px; font-weight: 300;
+      color: var(--black); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-mark { width: 20px; height: 20px; position: relative; flex-shrink: 0; }
+    .nav-mark-circle { width: 20px; height: 20px; border-radius: 50%; background: var(--signal); }
+    .nav-mark-line { position: absolute; top: 50%; left: -2px; right: -2px; height: 2px; background: var(--black); transform: translateY(-50%) rotate(-30deg); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-tag { font-family: var(--font-mono); font-size: 9px; color: var(--signal); letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--signal); padding: 3px 8px; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { font-family: var(--font-mono); font-size: 10px; color: var(--mid); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-back { font-family: var(--font-mono); font-size: 10px; color: var(--mid); text-decoration: none; }
+
+    /* LAYOUT */
+    .section { padding: 80px 32px; max-width: 800px; margin: 0 auto; }
+    .section + .section { border-top: 1px solid var(--light); }
+
+    .label {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 400;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); margin-bottom: 40px;
+    }
+
+    /* HERO — large geometric shape + type */
+    .hero {
+      min-height: 100svh; background: var(--white);
+      display: grid; position: relative; overflow: hidden;
+    }
+
+    /* The big graphic shape — circle + signal line */
+    .hero-shape {
+      position: absolute;
+      right: -10vw; top: 50%;
+      transform: translateY(-50%);
+      width: min(70vw, 600px);
+      height: min(70vw, 600px);
+    }
+    .shape-circle {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: var(--off-white);
+      position: absolute;
+    }
+    .shape-signal {
+      position: absolute;
+      top: 50%; left: -10%; right: -30%;
+      height: 3px; background: var(--signal);
+      transform: translateY(-50%) rotate(-8deg);
+      transform-origin: left center;
+    }
+    .shape-dot {
+      position: absolute;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--signal);
+      top: calc(50% - 12px);
+      left: calc(38% - 12px);
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      padding: 80px 32px;
+      max-width: 800px; margin: 0 auto; width: 100%;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      min-height: 100svh;
+    }
+
+    .hero-tag {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--signal); margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 11vw, 100px);
+      font-weight: 200; line-height: 0.95;
+      letter-spacing: -0.04em; color: var(--black);
+      margin-bottom: 32px; max-width: 8ch;
+    }
+
+    .hero-sub {
+      font-size: 15px; font-weight: 300; color: var(--mid);
+      line-height: 1.7; max-width: 44ch; margin-bottom: 48px;
+    }
+
+    .hero-bar {
+      border-top: 1px solid var(--light); padding: 16px 0;
+      display: flex; justify-content: space-between;
+      font-family: var(--font-mono); font-size: 10px; color: var(--light);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* GRAPHIC SHAPES — used as section dividers and accents */
+    .shape-divider {
+      display: flex; align-items: center; gap: 0;
+      height: 80px; overflow: hidden;
+    }
+    .shape-block { height: 100%; }
+    .sb-black { background: var(--black); flex: 3; }
+    .sb-signal { background: var(--signal); flex: 1; }
+    .sb-white { background: var(--off-white); flex: 2; }
+    .sb-circle {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--signal); flex-shrink: 0; margin-left: -40px;
+    }
+
+    /* POSITIONING */
+    .big-idea {
+      font-size: clamp(22px, 4vw, 36px); font-weight: 200;
+      line-height: 1.25; letter-spacing: -0.02em;
+      color: var(--black); margin-bottom: 40px;
+      position: relative; padding-left: 0;
+    }
+
+    .trait-row {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 24px; padding: 20px 0; border-top: 1px solid var(--light);
+      align-items: start;
+    }
+    .trait-row:last-child { border-bottom: 1px solid var(--light); }
+    .trait-shape { display: flex; align-items: center; justify-content: center; padding-top: 4px; }
+    .trait-name { font-family: var(--font-mono); font-size: 10px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--signal); margin-bottom: 6px; }
+    .trait-desc { font-size: 14px; font-weight: 300; line-height: 1.65; color: var(--mid); }
+
+    /* COLORS */
+    .color-row { display: flex; gap: 2px; margin-top: 32px; height: 100px; }
+    .color-seg { flex: 1; display: flex; align-items: flex-end; padding: 10px 12px; }
+    .color-seg-label { font-family: var(--font-mono); font-size: 9px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5; }
+
+    .signal-bar { height: 120px; background: var(--signal); display: flex; align-items: flex-end; padding: 16px 20px; margin-top: 2px; position: relative; overflow: hidden; }
+    .signal-bar::before { content: ''; position: absolute; right: 32px; top: 50%; width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.08); transform: translateY(-50%); }
+    .signal-bar::after { content: ''; position: absolute; right: 0; top: 50%; width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,0.06); transform: translateY(-50%); }
+    .signal-bar-label { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.9); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.6; position: relative; z-index: 1; }
+
+    /* TYPE */
+    .type-system { margin-top: 32px; }
+    .type-row { padding: 32px 0; border-bottom: 1px solid var(--light); }
+    .type-row:first-child { border-top: 1px solid var(--light); }
+    .type-meta { font-family: var(--font-mono); font-size: 9px; color: var(--light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+    .t-display { font-size: clamp(52px, 12vw, 108px); font-weight: 200; line-height: 0.9; letter-spacing: -0.04em; color: var(--black); }
+    .t-headline { font-size: clamp(28px, 5vw, 48px); font-weight: 200; line-height: 1.05; letter-spacing: -0.025em; }
+    .t-body { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 56ch; }
+    .t-mono { font-family: var(--font-mono); font-size: 13px; font-weight: 400; line-height: 1.6; color: var(--mid); }
+    .t-label { font-family: var(--font-mono); font-size: 10px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--signal); }
+
+    /* PHOTO */
+    .photo-grid { display: grid; gap: 2px; margin-top: 32px; }
+    .photo-frame { position: relative; overflow: hidden; background: var(--off-white); }
+    .photo-frame img { width: 100%; display: block; }
+    .photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 40px 20px 16px;
+      background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, transparent 100%);
+    }
+    .photo-caption-title { font-family: var(--font-mono); font-size: 10px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); margin-bottom: 3px; }
+    .photo-caption-sub { font-family: var(--font-mono); font-size: 9px; color: var(--mid); }
+
+    /* GRAPHIC SECTION — shape compositions */
+    .graphic-section { padding: 0; overflow: hidden; }
+    .graphic-row { display: flex; min-height: 240px; }
+    .graphic-col { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 32px; }
+    .graphic-col-black { background: var(--black); }
+    .graphic-col-signal { background: var(--signal); }
+    .graphic-col-white { background: var(--white); border: 1px solid var(--light); }
+    .graphic-col-offwhite { background: var(--off-white); }
+
+    /* SVG shape compositions */
+    .shape-comp { width: 100%; height: 160px; }
+
+    /* ICONS V5 — lighter stroke, shape-influenced */
+    .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 2px; margin-top: 32px; }
+    .icon-cell {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; padding: 20px 8px; background: var(--off-white);
+      transition: background 0.1s;
+    }
+    .icon-cell:hover { background: var(--black); }
+    .icon-cell:hover svg { color: var(--white); }
+    .icon-cell:hover .icon-label { color: var(--mid); }
+    .icon-cell.signal-icon svg { color: var(--signal); }
+    .icon-cell svg { width: 22px; height: 22px; color: var(--black); }
+    .icon-label { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-align: center; }
+
+    /* COMPOSITIONS */
+    .comp-light { background: var(--off-white); padding: 72px 32px; position: relative; overflow: hidden; }
+    .comp-light::before {
+      content: ''; position: absolute;
+      right: -5%; top: 50%; transform: translateY(-50%);
+      width: min(50vw, 400px); height: min(50vw, 400px);
+      border-radius: 50%; background: var(--white); opacity: 0.7;
+    }
+    .comp-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    .comp-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--signal); margin-bottom: 24px; }
+    .comp-headline { font-size: clamp(36px, 8vw, 72px); font-weight: 200; line-height: 1; letter-spacing: -0.03em; color: var(--black); margin-bottom: 24px; }
+    .comp-body { font-size: 15px; font-weight: 300; line-height: 1.7; color: var(--mid); max-width: 44ch; margin-bottom: 36px; }
+    .comp-cta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); display: inline-flex; align-items: center; gap: 10px; text-decoration: none; border-bottom: 1px solid var(--light); padding-bottom: 4px; }
+    .comp-cta::after { content: '→'; color: var(--signal); }
+
+    /* DATA UI V5 */
+    .data-v5 { font-family: var(--font-mono); border: 1px solid var(--light); overflow: hidden; margin-top: 2px; background: var(--white); }
+    .data-v5-header { background: var(--off-white); padding: 12px 20px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--light); }
+    .data-v5-title { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); }
+    .data-v5-status { font-size: 10px; color: var(--signal); display: flex; align-items: center; gap: 5px; }
+    .data-v5-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--signal); }
+    .data-row { padding: 10px 20px; display: grid; grid-template-columns: 1fr auto; border-bottom: 1px solid var(--off-white); }
+    .data-key { font-size: 11px; font-weight: 300; color: var(--mid); }
+    .data-val { font-size: 11px; font-weight: 400; color: var(--black); }
+    .data-val.alert { color: var(--signal); }
+
+    /* LOGO */
+    .logo-cells { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 32px; }
+    .logo-cell { display: flex; align-items: center; justify-content: center; min-height: 160px; }
+    .logo-cell-white { background: var(--white); border: 1px solid var(--light); }
+    .logo-cell-black { background: var(--black); }
+    .logo-cell-signal { background: var(--signal); }
+    .logo-cell-off { background: var(--off-white); }
+    .logo-lockup { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .logo-shape-mark { display: flex; align-items: center; gap: 8px; }
+    .mark-circle { width: 28px; height: 28px; border-radius: 50%; background: var(--signal); position: relative; flex-shrink: 0; }
+    .mark-line { position: absolute; top: 50%; left: -4px; right: -4px; height: 2px; background: var(--black); transform: translateY(-50%) rotate(-20deg); }
+    .mark-circle-inv .mark-line { background: var(--white); }
+    .logotype-v5 { font-family: var(--font-sans); font-size: 22px; font-weight: 200; letter-spacing: -0.03em; }
+    .logo-sub-v5 { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+
+    footer { border-top: 1px solid var(--light); padding: 40px 32px; background: var(--white); }
+    .footer-inner { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-label { font-family: var(--font-mono); font-size: 10px; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8; }
+    .footer-shape { display: flex; gap: 4px; align-items: center; }
+    .footer-rect { width: 32px; height: 12px; background: var(--black); }
+    .footer-circle { width: 20px; height: 20px; border-radius: 50%; background: var(--signal); margin-left: -6px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-mark">
+      <div class="nav-mark-circle"></div>
+      <div class="nav-mark-line"></div>
+    </div>
+    Formant
+  </div>
+  <div class="nav-right">
+    <div class="nav-tag">V5 · Graphic</div>
+    <ul class="nav-links">
+      <li><a href="#positioning">Brand</a></li>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#type">Type</a></li>
+      <li><a href="#photo">Photo</a></li>
+      <li><a href="#icons">Icons</a></li>
+      <li><a href="#graphic">Shapes</a></li>
+    </ul>
+    <a class="nav-back" href="../versions.html">← All versions</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-shape">
+    <div class="shape-circle"></div>
+    <div class="shape-signal"></div>
+    <div class="shape-dot"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">V5 · Graphic · Shape-oriented · Light</div>
+    <h1>Signal before failure.</h1>
+    <p class="hero-sub">Physical AI that reads what machines broadcast at frequencies operators don't monitor. The anomaly is never hidden — it just needs the right instrument.</p>
+    <div class="hero-bar">
+      <span>Formant.ai · 2026</span>
+      <span>Physical Operations</span>
+    </div>
+  </div>
+</section>
+
+<!-- GRAPHIC DIVIDER -->
+<div class="shape-divider">
+  <div class="shape-block sb-black"></div>
+  <div class="shape-block sb-signal"></div>
+  <div class="shape-block sb-white"></div>
+  <div class="sb-circle"></div>
+</div>
+
+<!-- POSITIONING -->
+<section class="section" id="positioning">
+  <div class="label">01 — Brand Positioning</div>
+  <div class="big-idea">V5 uses geometric shapes as a primary design element — circles, lines, and rectangles that echo the signal/anomaly concept. Modernist and graphic. El Lissitzky meets physical AI.</div>
+
+  <div style="margin-top: 40px;">
+    <div class="trait-row">
+      <div class="trait-shape">
+        <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke="#c0392b" stroke-width="2"/><line x1="0" y1="16" x2="32" y2="16" stroke="#111110" stroke-width="2"/></svg>
+      </div>
+      <div><div class="trait-name">Precise</div><div class="trait-desc">One signal that matters. Everything else is context.</div></div>
+    </div>
+    <div class="trait-row">
+      <div class="trait-shape">
+        <svg width="32" height="32" viewBox="0 0 32 32"><rect x="2" y="8" width="28" height="16" fill="none" stroke="#c0392b" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="#c0392b"/></svg>
+      </div>
+      <div><div class="trait-name">Intriguing</div><div class="trait-desc">Confidence that withholds. You sense there's more depth. The brand pulls you forward.</div></div>
+    </div>
+    <div class="trait-row">
+      <div class="trait-shape">
+        <svg width="32" height="32" viewBox="0 0 32 32"><path d="M4 24 L10 14 L16 18 L22 8 L28 12" fill="none" stroke="#c0392b" stroke-width="2"/><circle cx="22" cy="8" r="3" fill="#c0392b"/></svg>
+      </div>
+      <div><div class="trait-name">Physical</div><div class="trait-desc">Machines, heat, vibration, consequence. The real world, monitored.</div></div>
+    </div>
+    <div class="trait-row">
+      <div class="trait-shape">
+        <svg width="32" height="32" viewBox="0 0 32 32"><polygon points="16,2 30,28 2,28" fill="none" stroke="#c0392b" stroke-width="2"/></svg>
+      </div>
+      <div><div class="trait-name">Alert</div><div class="trait-desc">The signal red appears only when something matters. That rarity is the point.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section class="section" id="color">
+  <div class="label">02 — Color System</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">White-dominant with warm off-white for panels. Black as the graphic element. Signal red — same as V1 — but here it's used in shapes as well as type.</p>
+  <div class="color-row">
+    <div class="color-seg" style="background: #111110;"><div class="color-seg-label" style="color: #888880;">Black<br>#111110</div></div>
+    <div class="color-seg" style="background: #888880;"><div class="color-seg-label" style="color: #f5f4f0;">Mid<br>#888880</div></div>
+    <div class="color-seg" style="background: #f5f4f0;"><div class="color-seg-label" style="color: #888880;">Off-white<br>#f5f4f0</div></div>
+    <div class="color-seg" style="background: #ffffff; border: 1px solid #e8e8e0;"><div class="color-seg-label" style="color: #888880;">White<br>#ffffff</div></div>
+  </div>
+  <div class="signal-bar">
+    <div class="signal-bar-label">Signal · #c0392b<br>Shape accent · Alert state · The moment that matters</div>
+  </div>
+</section>
+
+<!-- TYPE -->
+<section class="section" id="type">
+  <div class="label">03 — Typography</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">Extra-light for display — maximum contrast with the bold shapes. The type recedes; the shapes speak. Mono for data, same as all versions.</p>
+  <div class="type-system">
+    <div class="type-row"><div class="type-meta">Display — IBM Plex Sans ExtraLight 200</div><div class="t-display">Signal.</div></div>
+    <div class="type-row"><div class="type-meta">Headline — Light 300</div><div class="t-headline">Physical AI for<br>operations that<br>can't afford to guess.</div></div>
+    <div class="type-row"><div class="type-meta">Body — Light 300</div><div class="t-body">Our agent monitors 47 streams simultaneously. When unit 14's bearing temperature deviates from baseline, the agent acts. Before the operator notices.</div></div>
+    <div class="type-row"><div class="type-meta">Mono / Data</div><div class="t-mono">UNIT_14 · BEARING_TEMP +12.4°C · ANOMALY<br>PREDICTED_FAILURE 72H · ESCALATED 14:32</div></div>
+    <div class="type-row"><div class="type-meta">Label</div><div class="t-label">Physical Operations · Active · Fleet Monitor</div></div>
+  </div>
+</section>
+
+<!-- PHOTO -->
+<section class="section" id="photo">
+  <div class="label">04 — Photography</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">Graphic photography — bold composition, strong geometric reads. The shapes in the images rhyme with the shapes in the brand system. El Lissitzky would recognize it.</p>
+  <div class="photo-grid">
+    <div class="photo-frame" style="aspect-ratio: 1.5;">
+      <img src="v5-graphic-1.png" alt="Graphic composition 1">
+      <div class="photo-caption"><div class="photo-caption-title">Graphic composition</div><div class="photo-caption-sub">Shape as brand element</div></div>
+    </div>
+    <div class="photo-frame" style="aspect-ratio: 1.5;">
+      <img src="v5-graphic-2.png" alt="Graphic composition 2">
+      <div class="photo-caption"><div class="photo-caption-title">Signal geometry</div><div class="photo-caption-sub">The anomaly as form</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ICONS -->
+<section class="section" id="icons">
+  <div class="label">05 — Iconography</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">In V5, icons sit within the graphic system — they're shapes too. The signal icon especially reads as a brand element, not just a UI component.</p>
+  <div class="icon-grid">
+    <div class="icon-cell signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2 12 Q5 4 8 12 Q11 20 14 12 Q17 4 20 12"/><circle cx="22" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg><div class="icon-label">Signal</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="3" y="8" width="10" height="8"/><path d="M13 11h4l3 3v2h-7V8"/><circle cx="6" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/></svg><div class="icon-label">Fleet</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="5" y="5" width="14" height="14"/><path d="M9 9h2M13 9h2M9 12h6M9 15h4"/></svg><div class="icon-label">Agent</div></div>
+    <div class="icon-cell signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 17h14v4H5z"/></svg><div class="icon-label">Escalate</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2" y="4" width="20" height="14"/><path d="M8 22h8M12 18v4"/><path d="M6 11 Q8 7 10 11 Q12 15 14 11 Q16 7 18 11" stroke-width="1.25"/></svg><div class="icon-label">Monitor</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><circle cx="12" cy="12" r="3"/><path d="M6.3 6.3A8 8 0 0 0 6.3 17.7M17.7 6.3A8 8 0 0 1 17.7 17.7"/></svg><div class="icon-label">Sensor</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 17 L8 10 L12 13 L16 6 L21 9"/><path d="M17 4h4v4"/><path d="M3 21h18" stroke-width="0.75"/></svg><div class="icon-label">Predict</div></div>
+    <div class="icon-cell signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M12 3L2 21h20L12 3z"/><path d="M12 10v5M12 17v2"/></svg><div class="icon-label">Alert</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg><div class="icon-label">OK</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg><div class="icon-label">Schedule</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 4h16v16H4zM4 9h16M4 14h16M9 9v11M14 9v11"/></svg><div class="icon-label">Data</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="6" height="6"/><path d="M9 6h6M18 9v6M9 18h6M6 9v6"/></svg><div class="icon-label">Integrate</div></div>
+  </div>
+</section>
+
+<!-- GRAPHIC COMPOSITIONS -->
+<section class="section" id="graphic">
+  <div class="label">06 — Shape System</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 32px;">Geometric shapes as a first-class design element — used in dividers, compositions, and the logo mark itself. The circle + line motif encodes the signal concept.</p>
+
+  <div style="display: grid; gap: 2px;">
+    <!-- Row 1: graphic compositions -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; height: 160px;">
+      <div style="background: var(--black); display: flex; align-items: center; justify-content: center;">
+        <svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="30" fill="none" stroke="#c0392b" stroke-width="2"/><line x1="0" y1="40" x2="80" y2="40" stroke="white" stroke-width="2"/><circle cx="40" cy="40" r="6" fill="#c0392b"/></svg>
+      </div>
+      <div style="background: var(--signal); display: flex; align-items: center; justify-content: center;">
+        <svg width="80" height="80" viewBox="0 0 80 80"><rect x="10" y="20" width="60" height="40" fill="none" stroke="white" stroke-width="2"/><path d="M10 40 L25 28 L40 35 L55 20 L70 30" fill="none" stroke="white" stroke-width="2"/><circle cx="55" cy="20" r="5" fill="white"/></svg>
+      </div>
+      <div style="background: var(--off-white); display: flex; align-items: center; justify-content: center;">
+        <svg width="80" height="80" viewBox="0 0 80 80"><polygon points="40,5 75,70 5,70" fill="none" stroke="#111110" stroke-width="2"/><line x1="40" y1="5" x2="40" y2="70" stroke="#c0392b" stroke-width="2"/></svg>
+      </div>
+    </div>
+
+    <!-- Row 2: context text -->
+    <div style="background: var(--off-white); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--mid); line-height: 1.7;">Shapes carry meaning: circle = system, line = signal, triangle = alert.<br>The vocabulary is geometric. The grammar is brand.</div>
+      <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: 32px;">
+        <div style="width: 20px; height: 20px; border-radius: 50%; background: var(--black);"></div>
+        <div style="width: 40px; height: 3px; background: var(--signal);"></div>
+        <div style="width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 18px solid var(--signal);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSITIONS -->
+<div class="comp-light">
+  <div class="comp-inner">
+    <div class="comp-tag">Physical AI · Signal detected</div>
+    <div class="comp-headline">Before you<br>knew to look.</div>
+    <div class="comp-body">Formant's agent found the anomaly 72 hours before failure. The machine was already broadcasting it.</div>
+    <a class="comp-cta" href="#">See how</a>
+  </div>
+</div>
+
+<div style="max-width: 800px; margin: 0 auto;">
+  <div class="data-v5">
+    <div class="data-v5-header">
+      <div class="data-v5-title">Fleet · Unit 14 · Bay Area South</div>
+      <div class="data-v5-status">Anomaly Active</div>
+    </div>
+    <div class="data-row"><div class="data-key">bearing_temp_delta</div><div class="data-val alert">+12.4°C</div></div>
+    <div class="data-row"><div class="data-key">predicted_failure</div><div class="data-val alert">72–96 hours</div></div>
+    <div class="data-row"><div class="data-key">all_other_units</div><div class="data-val">Nominal</div></div>
+    <div class="data-row"><div class="data-key">escalated</div><div class="data-val">14:32:07 PST</div></div>
+  </div>
+</div>
+
+<!-- LOGO -->
+<section class="section" id="logo">
+  <div class="label">07 — Logo · V5</div>
+  <p style="font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 58ch; margin-bottom: 0;">The V5 mark introduces the circle-with-signal-line motif as the primary brand symbol — optionally alongside the wordmark. The F-with-waveform direction from earlier iterations remains valid; V5 offers an alternative abstract path.</p>
+  <div class="logo-cells">
+    <div class="logo-cell logo-cell-white">
+      <div class="logo-lockup">
+        <div class="logo-shape-mark">
+          <div class="mark-circle"><div class="mark-line"></div></div>
+          <div class="logotype-v5">Formant</div>
+        </div>
+        <div class="logo-sub-v5">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-cell-black">
+      <div class="logo-lockup">
+        <div class="logo-shape-mark">
+          <div class="mark-circle mark-circle-inv" style="background: var(--signal);"><div class="mark-line" style="background: white;"></div></div>
+          <div class="logotype-v5" style="color: var(--white);">Formant</div>
+        </div>
+        <div class="logo-sub-v5" style="color: var(--mid);">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-cell-signal" style="grid-column: span 2;">
+      <div class="logo-lockup">
+        <div class="logo-shape-mark">
+          <div class="mark-circle" style="background: white;"><div class="mark-line" style="background: var(--signal);"></div></div>
+          <div class="logotype-v5" style="color: white; font-size: 28px;">Formant</div>
+        </div>
+        <div class="logo-sub-v5" style="color: rgba(255,255,255,0.6);">Physical AI · formant.ai</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-label">Formant Brand V5 · Graphic<br>March 2026</div>
+    <div class="footer-shape">
+      <div class="footer-rect"></div>
+      <div class="footer-circle"></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
