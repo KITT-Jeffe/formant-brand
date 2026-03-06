@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formant — Brand System V6 · Contemporary Bold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0f0f0e;
+      --near-black: #1c1c1a;
+      --mid: #737370;
+      --light: #b0b0aa;
+      --pale: #e4e4de;
+      --off-white: #f6f6f2;
+      --white: #ffffff;
+      --signal: #c0392b;
+      --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { font-family: var(--font-sans); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
+
+    /* NAV — minimal, type-led */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 48px;
+      mix-blend-mode: normal;
+    }
+    .nav-logo {
+      font-family: var(--font-sans); font-size: 13px; font-weight: 600;
+      color: var(--black); letter-spacing: -0.01em;
+    }
+    .nav-logo em { font-style: normal; color: var(--signal); }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-tag { font-family: var(--font-mono); font-size: 9px; color: var(--signal); letter-spacing: 0.12em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { font-family: var(--font-mono); font-size: 9px; color: var(--mid); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-back { font-family: var(--font-mono); font-size: 9px; color: var(--mid); text-decoration: none; }
+
+    /* HERO — type as hero, asymmetric, full bleed */
+    .hero {
+      min-height: 100svh;
+      padding-top: 48px;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      background: var(--white);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Large red rule — a single horizontal line high on the page */
+    .hero-rule {
+      position: absolute;
+      top: 48px; left: 0; right: 0;
+      height: 3px;
+      background: var(--signal);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 80px 40px 48px;
+      position: relative;
+    }
+
+    /* Massive display type — runs off the right edge intentionally */
+    .hero-display {
+      font-size: clamp(72px, 18vw, 180px);
+      font-weight: 700;
+      line-height: 0.85;
+      letter-spacing: -0.045em;
+      color: var(--black);
+      white-space: nowrap;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .hero-display .line-2 {
+      color: var(--off-white);
+      -webkit-text-stroke: 2px var(--black);
+    }
+
+    .hero-display .line-3 {
+      color: var(--signal);
+    }
+
+    /* Bottom strip — metadata */
+    .hero-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid var(--pale);
+      padding: 16px 40px;
+    }
+
+    .hero-strip-cell {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    .hero-strip-cell:nth-child(2) { text-align: center; }
+    .hero-strip-cell:nth-child(3) { text-align: right; }
+    .hero-strip-cell strong { color: var(--black); font-weight: 500; display: block; }
+
+    /* SECTIONS */
+    .section { padding: 96px 40px; max-width: 880px; margin: 0 auto; }
+    .section + .section { border-top: 1px solid var(--pale); }
+    .section-full { }
+
+    .label {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid);
+      margin-bottom: 48px;
+    }
+
+    /* POSITIONING */
+    /* Asymmetric layout — large number + text */
+    .position-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 48px;
+      margin-top: 48px;
+    }
+
+    .position-number {
+      font-size: clamp(96px, 20vw, 200px);
+      font-weight: 700;
+      line-height: 0.8;
+      letter-spacing: -0.05em;
+      color: var(--pale);
+      padding-top: 8px;
+    }
+
+    .position-text { }
+
+    .position-headline {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .position-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 52ch;
+    }
+
+    /* Character traits — horizontal rule layout */
+    .traits { margin-top: 64px; }
+    .trait {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 24px;
+      align-items: baseline;
+      padding: 20px 0;
+      border-top: 1px solid var(--pale);
+    }
+    .trait:last-child { border-bottom: 1px solid var(--pale); }
+    .trait-name {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--black);
+    }
+    .trait-desc { font-size: 14px; font-weight: 300; color: var(--mid); line-height: 1.6; }
+    .trait-num {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 300;
+      color: var(--pale); letter-spacing: 0.04em;
+    }
+
+    /* COLOR */
+    .color-system { margin-top: 48px; }
+    .color-band {
+      height: 96px; display: flex; align-items: flex-end; padding: 14px 20px;
+      margin-bottom: 2px;
+    }
+    .color-band-label {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.5;
+    }
+    .color-row { display: flex; gap: 2px; height: 64px; margin-bottom: 2px; }
+    .color-cell { flex: 1; display: flex; align-items: flex-end; padding: 8px 10px; }
+    .color-cell-label {
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em;
+      text-transform: uppercase; line-height: 1.4; font-weight: 400;
+    }
+
+    /* TYPOGRAPHY */
+    .type-system { margin-top: 48px; }
+    .type-row {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--pale);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .type-row:first-child { border-top: 1px solid var(--pale); }
+    .type-meta {
+      font-family: var(--font-mono); font-size: 9px; color: var(--light);
+      letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.6;
+      padding-top: 6px;
+    }
+
+    .t-display {
+      font-size: clamp(56px, 14vw, 140px);
+      font-weight: 700; line-height: 0.85;
+      letter-spacing: -0.04em; color: var(--black);
+    }
+    .t-display .hollow {
+      color: var(--white);
+      -webkit-text-stroke: 2px var(--black);
+    }
+    .t-headline {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 300; line-height: 1.05;
+      letter-spacing: -0.02em; color: var(--black);
+    }
+    .t-body-text {
+      font-size: 15px; font-weight: 300;
+      line-height: 1.75; color: var(--mid); max-width: 56ch;
+    }
+    .t-mono-text {
+      font-family: var(--font-mono); font-size: 12px;
+      font-weight: 400; line-height: 1.6; color: var(--mid);
+    }
+    .t-label-text {
+      font-family: var(--font-mono); font-size: 10px;
+      font-weight: 500; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--signal);
+    }
+
+    /* PHOTOGRAPHY */
+    .photo-section { padding: 96px 0; }
+    .photo-section .inner { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+
+    .photo-full { width: 100%; position: relative; overflow: hidden; background: var(--off-white); }
+    .photo-full img { width: 100%; display: block; }
+    .photo-label-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 40px;
+      border-top: 1px solid var(--pale);
+    }
+    .photo-label-text {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid);
+    }
+    .photo-label-signal {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal);
+    }
+
+    .photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 2px; }
+
+    /* ICONS */
+    .icon-section { padding: 96px 40px; max-width: 880px; margin: 0 auto; }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+      gap: 2px; margin-top: 48px;
+    }
+    .icon-cell {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 10px; padding: 20px 8px;
+      background: var(--off-white); transition: background 0.1s;
+    }
+    .icon-cell:hover { background: var(--black); }
+    .icon-cell:hover svg { color: var(--white); }
+    .icon-cell:hover .icon-label { color: var(--mid); }
+    .icon-cell.signal-icon svg { color: var(--signal); }
+    .icon-cell svg { width: 20px; height: 20px; color: var(--black); }
+    .icon-label {
+      font-family: var(--font-mono); font-size: 8px; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-align: center;
+    }
+
+    /* COMPOSITIONS */
+    /* Hero comp — type-dominant */
+    .comp-type {
+      background: var(--black);
+      padding: 96px 40px;
+      overflow: hidden; position: relative;
+    }
+    .comp-type-rule {
+      position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--signal);
+    }
+    .comp-type-inner { max-width: 880px; margin: 0 auto; }
+    .comp-eyebrow {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal);
+      margin-bottom: 32px;
+    }
+    .comp-type-headline {
+      font-size: clamp(48px, 12vw, 120px);
+      font-weight: 700; line-height: 0.88;
+      letter-spacing: -0.04em; color: var(--white);
+      margin-bottom: 48px;
+    }
+    .comp-type-headline .hollow {
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255,255,255,0.3);
+    }
+    .comp-type-headline .red { color: var(--signal); }
+    .comp-meta {
+      display: flex; gap: 48px; align-items: flex-end;
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 32px;
+    }
+    .comp-meta-item { }
+    .comp-meta-label {
+      font-family: var(--font-mono); font-size: 9px; color: var(--mid);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px;
+    }
+    .comp-meta-value {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 400; color: var(--white);
+    }
+    .comp-meta-value.alert { color: var(--signal); }
+
+    /* Light comp */
+    .comp-light {
+      padding: 96px 40px; background: var(--off-white);
+      border-top: 3px solid var(--black);
+    }
+    .comp-light-inner { max-width: 880px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    @media (max-width: 640px) { .comp-light-inner { grid-template-columns: 1fr; } }
+    .comp-light-headline {
+      font-size: clamp(32px, 6vw, 56px); font-weight: 700;
+      line-height: 0.95; letter-spacing: -0.03em; color: var(--black);
+    }
+    .comp-light-body {
+      font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid);
+      margin-bottom: 32px;
+    }
+    .comp-cta {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--black);
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .comp-cta::after { content: '→'; color: var(--signal); }
+
+    /* DATA UI V6 */
+    .data-v6 { font-family: var(--font-mono); border-top: 3px solid var(--black); background: var(--white); }
+    .data-v6-header {
+      padding: 14px 40px; display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--pale);
+    }
+    .data-v6-title { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--black); }
+    .data-v6-status { font-size: 10px; color: var(--signal); display: flex; align-items: center; gap: 6px; }
+    .data-v6-status::before { content: '●'; font-size: 6px; }
+    .data-v6-row {
+      padding: 12px 40px; display: grid; grid-template-columns: 1fr auto;
+      border-bottom: 1px solid var(--pale);
+    }
+    .data-key { font-size: 11px; font-weight: 300; color: var(--mid); letter-spacing: 0.02em; }
+    .data-val { font-size: 11px; font-weight: 500; color: var(--black); }
+    .data-val.alert { color: var(--signal); }
+
+    /* LOGO */
+    .logo-section { padding: 96px 40px; max-width: 880px; margin: 0 auto; }
+    .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
+    .logo-cell { display: flex; align-items: center; justify-content: center; min-height: 160px; }
+    .logo-white { background: var(--white); border: 1px solid var(--pale); }
+    .logo-black { background: var(--black); }
+    .logo-signal { background: var(--signal); }
+    .logo-off { background: var(--off-white); }
+
+    .logo-lockup { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .logotype-v6 {
+      font-family: var(--font-sans); font-size: 28px; font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .logotype-v6 em {
+      font-style: normal;
+      color: var(--signal);
+      font-weight: 700;
+    }
+    .logotype-v6.on-dark { color: var(--white); }
+    .logotype-v6.on-dark em { color: var(--signal); }
+    .logotype-v6.on-signal { color: var(--white); }
+    .logotype-v6.on-signal em { color: rgba(255,255,255,0.5); font-weight: 300; }
+    .logo-sub-v6 {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+    }
+
+    footer { border-top: 3px solid var(--black); padding: 32px 40px; background: var(--white); }
+    .footer-inner { max-width: 880px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-label { font-family: var(--font-mono); font-size: 9px; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8; }
+    .footer-v { font-family: var(--font-sans); font-size: 40px; font-weight: 700; color: var(--pale); letter-spacing: -0.04em; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><em>F</em>ormant</div>
+  <div class="nav-right">
+    <div class="nav-tag">V6 · Contemporary Bold</div>
+    <ul class="nav-links">
+      <li><a href="#positioning">Brand</a></li>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#type">Type</a></li>
+      <li><a href="#photo">Photo</a></li>
+      <li><a href="#icons">Icons</a></li>
+      <li><a href="#compositions">Use</a></li>
+    </ul>
+    <a class="nav-back" href="../versions.html">← All versions</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-content">
+    <div class="hero-display">
+      <div>PHYSICAL</div>
+      <div class="line-2">OPERATIONS</div>
+      <div class="line-3">KNOW.</div>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <div class="hero-strip-cell"><strong>V6 · Contemporary Bold</strong>Brand System · March 2026</div>
+    <div class="hero-strip-cell"><strong>formant.ai</strong>Physical AI</div>
+    <div class="hero-strip-cell"><strong>Signal</strong>#c0392b</div>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="section" id="positioning">
+  <div class="label">01 — Brand Positioning</div>
+
+  <div class="position-grid">
+    <div class="position-number">01</div>
+    <div class="position-text">
+      <div class="position-headline">Formant finds the signal in physical operations before the failure, before the incident — before you knew to look.</div>
+      <p class="position-body">V6 uses typography as the primary design force. Type at extreme scale, hollow letterforms, asymmetric grids. The boldness is earned — it reflects the confidence of a system that already knows. Contemporary editorial energy: direct, dense, precise.</p>
+    </div>
+  </div>
+
+  <div class="traits">
+    <div class="trait">
+      <div class="trait-name">Precise</div>
+      <div class="trait-desc">Specific data over general claims. A number, a unit, a time. The one signal that changes an outcome.</div>
+      <div class="trait-num">01/04</div>
+    </div>
+    <div class="trait">
+      <div class="trait-name">Intriguing</div>
+      <div class="trait-desc">The brand withholds just enough. You sense depth. You want to understand it. That pull is deliberate.</div>
+      <div class="trait-num">02/04</div>
+    </div>
+    <div class="trait">
+      <div class="trait-name">Bold</div>
+      <div class="trait-desc">Not loud — confident. Type at maximum scale. Hierarchy enforced. Nothing decorative.</div>
+      <div class="trait-num">03/04</div>
+    </div>
+    <div class="trait">
+      <div class="trait-name">Physical</div>
+      <div class="trait-desc">Real machines, real operations, real consequence. Not a dashboard. The world that breaks when it fails.</div>
+      <div class="trait-num">04/04</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section class="section" id="color">
+  <div class="label">02 — Color System</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 56ch; margin-bottom: 0;">White and near-black form the tension. Signal red is structural — it appears as a rule, an accent, a single word. Never decorative.</p>
+
+  <div class="color-system">
+    <div class="color-band" style="background: var(--black); margin-top: 48px;">
+      <div class="color-band-label" style="color: var(--mid);">Black · #0f0f0e · Structural</div>
+    </div>
+    <div class="color-band" style="background: var(--signal); height: 72px;">
+      <div class="color-band-label" style="color: rgba(255,255,255,0.9);">Signal · #c0392b · One word. One rule. One moment.</div>
+    </div>
+    <div class="color-row" style="margin-top: 0;">
+      <div class="color-cell" style="background: var(--mid);"><div class="color-cell-label" style="color: var(--off-white);">Mid<br>#737370</div></div>
+      <div class="color-cell" style="background: var(--pale);"><div class="color-cell-label" style="color: var(--mid);">Pale<br>#e4e4de</div></div>
+      <div class="color-cell" style="background: var(--off-white); border: 1px solid var(--pale);"><div class="color-cell-label" style="color: var(--mid);">Off-white<br>#f6f6f2</div></div>
+      <div class="color-cell" style="background: var(--white); border: 1px solid var(--pale);"><div class="color-cell-label" style="color: var(--mid);">White<br>#ffffff</div></div>
+    </div>
+    <div style="padding: 16px 0; border-top: 1px solid var(--pale); margin-top: 2px;">
+      <p style="font-family: var(--font-mono); font-size: 11px; color: var(--mid); line-height: 1.7;">Usage: Signal red appears as the 3px top rule, as the F in the wordmark, as a single word in the display type, and as the alert state in data UI. Nowhere else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="section" id="type">
+  <div class="label">03 — Typography</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 56ch; margin-bottom: 0;">Type is the brand. Extreme scale shifts create hierarchy. Hollow letterforms (-webkit-text-stroke) add depth. Mono for all data, labels, and system text — it's honest about what it is.</p>
+
+  <div class="type-system">
+    <div class="type-row">
+      <div class="type-meta">Display<br>Bold 700<br>−4.5% tracking</div>
+      <div class="t-display">SIGNAL<br><span class="hollow">FOUND.</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Headline<br>Light 300<br>−2% tracking</div>
+      <div class="t-headline">Physical AI for operations<br>that can't afford to guess.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Body<br>Light 300<br>1.75 leading</div>
+      <div class="t-body-text">Our agent monitors 47 simultaneous data streams. When unit 14's bearing temperature deviates 12 degrees from baseline, the agent acts — before the operator notices, before the failure begins.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Mono<br>Data + UI<br>Regular 400</div>
+      <div class="t-mono-text">UNIT_14 · BEARING_TEMP_DELTA +12.4°C<br>ANOMALY_SCORE 0.94 · PREDICTED_FAILURE 72H<br>ESCALATED 14:32:07 PST · PRIORITY HIGH</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Label<br>Mono 500<br>+16% tracking</div>
+      <div class="t-label-text">Physical Operations · Active · Fleet Monitor</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHY -->
+<section class="photo-section" id="photo">
+  <div class="inner">
+    <div class="label">04 — Photography</div>
+    <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 56ch; margin-bottom: 0;">The physical object on white — clean, bold, generous negative space. No context, no lifestyle, no text. The machine as designed object. The formula that emerged from the TE-inspired sessions: small object, single hard light, long shadow.</p>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="photo-full" style="aspect-ratio: 2.5;">
+      <img src="v6-photo-1-robot-overhead.png" alt="Robot from above">
+    </div>
+    <div class="photo-label-bar">
+      <div class="photo-label-text">Overhead · Robot chassis · Pure white</div>
+      <div class="photo-label-signal">V6 · Contemporary Bold</div>
+    </div>
+    <div class="photo-grid-2">
+      <div class="photo-full" style="aspect-ratio: 1.2;">
+        <img src="v6-photo-2-sensor-bw.png" alt="Sensor B&W">
+        <div class="photo-label-bar" style="position: relative; border-top: 1px solid var(--pale);">
+          <div class="photo-label-text">Sensor · High contrast B&W</div>
+        </div>
+      </div>
+      <!-- Original winning image from the batch -->
+      <div class="photo-full" style="aspect-ratio: 1.2; background: var(--off-white);">
+        <img src="../v4/v4-photo-1-object.png" alt="Connector on white" style="width:100%; display:block;">
+        <div class="photo-label-bar" style="position: relative; border-top: 1px solid var(--pale);">
+          <div class="photo-label-text">Connector · V4 orig · Shadow study</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ICONS -->
+<section class="icon-section" id="icons">
+  <div class="label">05 — Iconography</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 56ch; margin-bottom: 0;">Same icon vocabulary — in V6 they sit flatter, less padding, more density. The system reads as a panel of controls.</p>
+  <div class="icon-grid">
+    <div class="icon-cell signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M2 12 Q5 4 8 12 Q11 20 14 12 Q17 4 20 12"/><circle cx="22" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg><div class="icon-label">Signal</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="3" y="8" width="10" height="8"/><path d="M13 11h4l3 3v2h-7V8"/><circle cx="6" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/></svg><div class="icon-label">Fleet</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="5" y="5" width="14" height="14"/><path d="M9 9h2M13 9h2M9 12h6M9 15h4"/></svg><div class="icon-label">Agent</div></div>
+    <div class="icon-cell signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 17h14v4H5z"/></svg><div class="icon-label">Escalate</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="2" y="4" width="20" height="14"/><path d="M8 22h8M12 18v4"/><path d="M6 11 Q8 7 10 11 Q12 15 14 11 Q16 7 18 11" stroke-width="1.25"/></svg><div class="icon-label">Monitor</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><circle cx="12" cy="12" r="3"/><path d="M6.3 6.3A8 8 0 0 0 6.3 17.7M17.7 6.3A8 8 0 0 1 17.7 17.7"/></svg><div class="icon-label">Sensor</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M3 17 L8 10 L12 13 L16 6 L21 9"/><path d="M17 4h4v4"/><path d="M3 21h18" stroke-width="0.75"/></svg><div class="icon-label">Predict</div></div>
+    <div class="icon-cell signal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M12 3L2 21h20L12 3z"/><path d="M12 10v5M12 17v2"/></svg><div class="icon-label">Alert</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/></svg><div class="icon-label">OK</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg><div class="icon-label">Schedule</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M4 4h16v16H4zM4 9h16M4 14h16M9 9v11M14 9v11"/></svg><div class="icon-label">Data</div></div>
+    <div class="icon-cell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/><rect x="15" y="15" width="6" height="6"/><path d="M9 6h6M18 9v6M9 18h6M6 9v6"/></svg><div class="icon-label">Integrate</div></div>
+  </div>
+</section>
+
+<!-- COMPOSITIONS -->
+<section id="compositions">
+  <div class="comp-type">
+    <div class="comp-type-rule"></div>
+    <div class="comp-type-inner">
+      <div class="comp-eyebrow">Physical AI · Fleet Monitor · Active</div>
+      <div class="comp-type-headline">
+        <div>ALREADY</div>
+        <div class="hollow">KNEW.</div>
+      </div>
+      <div class="comp-meta">
+        <div class="comp-meta-item">
+          <div class="comp-meta-label">Unit</div>
+          <div class="comp-meta-value alert">14 — Anomaly</div>
+        </div>
+        <div class="comp-meta-item">
+          <div class="comp-meta-label">Delta</div>
+          <div class="comp-meta-value alert">+12.4°C</div>
+        </div>
+        <div class="comp-meta-item">
+          <div class="comp-meta-label">Predicted failure</div>
+          <div class="comp-meta-value alert">72 hours</div>
+        </div>
+        <div class="comp-meta-item">
+          <div class="comp-meta-label">All other units</div>
+          <div class="comp-meta-value">Nominal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-v6">
+    <div class="data-v6-header">
+      <div class="data-v6-title">Fleet · Bay Area South · 47 Units</div>
+      <div class="data-v6-status">1 Anomaly Active</div>
+    </div>
+    <div class="data-v6-row"><div class="data-key">bearing_temp_delta</div><div class="data-val alert">+12.4°C above 7-day baseline</div></div>
+    <div class="data-v6-row"><div class="data-key">vibration_rms</div><div class="data-val alert">0.84 mm/s · rising</div></div>
+    <div class="data-v6-row"><div class="data-key">predicted_failure</div><div class="data-val alert">72–96 hours</div></div>
+    <div class="data-v6-row"><div class="data-key">escalated</div><div class="data-val">14:32:07 PST · Ops team notified</div></div>
+    <div class="data-v6-row"><div class="data-key">all_other_units</div><div class="data-val">Nominal</div></div>
+  </div>
+
+  <div class="comp-light">
+    <div class="comp-light-inner">
+      <div class="comp-light-headline">The anomaly was always there. We just needed the right instrument.</div>
+      <div>
+        <p class="comp-light-body">Formant monitors the physical world at frequencies no human operator can sustain. 47 streams. Continuously. The moment something matters — you're already ahead of it.</p>
+        <a class="comp-cta" href="#">See the platform</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section class="logo-section" id="logo">
+  <div class="label">07 — Logo · V6</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 56ch; margin-bottom: 0;">Bold weight wordmark. The F in signal red — the only color element. Clean, direct, scales from favicon to billboard. The F-waveform mark direction is the next refinement step.</p>
+  <div class="logo-grid">
+    <div class="logo-cell logo-white">
+      <div class="logo-lockup">
+        <div class="logotype-v6"><em>F</em>ormant</div>
+        <div class="logo-sub-v6" style="color: var(--mid);">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-black">
+      <div class="logo-lockup">
+        <div class="logotype-v6 on-dark"><em>F</em>ormant</div>
+        <div class="logo-sub-v6" style="color: var(--mid);">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-signal">
+      <div class="logo-lockup">
+        <div class="logotype-v6 on-signal"><em>F</em>ormant</div>
+        <div class="logo-sub-v6" style="color: rgba(255,255,255,0.5);">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-off" style="grid-column: span 3; min-height: 80px;">
+      <div style="font-family: var(--font-mono); font-size: 10px; color: var(--mid); text-align: center; letter-spacing: 0.1em; line-height: 1.7;">Bold weight · F in signal red · Scales to 16px favicon · Works on hardware label<br>Next: vector F-waveform mark incorporating the signal concept structurally</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-label">Formant Brand V6 · Contemporary Bold<br>March 2026 · ~/Projects/formant-brand/v6/</div>
+    <div class="footer-v">V6</div>
+  </div>
+</footer>
+
+</body>
+</html>
