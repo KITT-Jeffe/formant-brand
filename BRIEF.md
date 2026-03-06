@@ -60,9 +60,12 @@ People should be *intrigued* by what Formant does. Not just impressed. Intrigued
 - Teenage Engineering restraint — obvious only in retrospect
 
 ### Logo
-- The existing F-mark has bones
-- Needs tightening and specificity
+- The existing F-mark (geometric shapes, no curves) has bones — don't discard it
+- Its constructivist, grid-built geometry is right; it just lacks the conceptual layer
+- Direction: keep the rigid constructed-shapes DNA, introduce the waveform as the one element that breaks the geometry — a single signal line through an otherwise perfectly ordered form
+- The anomaly, literally built into the mark. Total order + one disruption = the brand idea made visible
 - Must work at 16px and on a hardware label
+- Explored directions: v1 (grid F + spike), v3 "F Signal Study" (bold F + waveform cut) — both arrived at same idea independently
 
 ---
 
