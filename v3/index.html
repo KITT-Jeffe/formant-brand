@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formant — Brand System V3 · Frequency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;1,200&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #04030a;
+      --deep: #0d0918;
+      --dark: #170f2e;
+      --mid: #6b5b8a;
+      --light: #b09fcc;
+      --pale: #e8e0f4;
+      --off-white: #f5f0ff;
+      --white: #fefcff;
+
+      /* V3 accent: phosphorescent violet-magenta — infrared, UV, spectral analysis */
+      --signal: #c026d3;
+      --signal-bright: #e040fb;
+      --signal-warm: #a855f7;
+      --signal-cool: #7c3aed;
+      --signal-glow: rgba(192, 38, 211, 0.12);
+      --signal-glow-warm: rgba(168, 85, 247, 0.08);
+
+      --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { font-family: var(--font-sans); background: var(--void); color: var(--off-white); -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(4,3,10,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(192,38,211,0.12);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 52px;
+    }
+    .nav-logo { font-family: var(--font-sans); font-size: 14px; font-weight: 300; color: var(--off-white); letter-spacing: -0.01em; }
+    .nav-logo span { color: var(--signal-bright); font-weight: 500; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-tag { font-family: var(--font-mono); font-size: 10px; color: var(--signal-bright); background: var(--signal-glow); padding: 3px 8px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(192,38,211,0.2); }
+    .nav-back { font-family: var(--font-mono); font-size: 10px; color: var(--mid); text-decoration: none; letter-spacing: 0.06em; }
+    .nav-back:hover { color: var(--light); }
+
+    /* LAYOUT */
+    .section { padding: 96px 32px; max-width: 800px; margin: 0 auto; }
+    .section + .section { border-top: 1px solid rgba(192,38,211,0.08); }
+
+    .label {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-warm);
+      margin-bottom: 40px; display: flex; align-items: center; gap: 12px;
+    }
+    .label::after { content: ''; flex: 1; height: 1px; background: rgba(192,38,211,0.2); }
+
+    /* HERO */
+    .hero {
+      min-height: 100svh;
+      background: var(--void);
+      display: grid; grid-template-rows: 1fr auto;
+      position: relative; overflow: hidden;
+    }
+
+    /* Spectral gradient background */
+    .hero-spectrum {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(192,38,211,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 80%, rgba(124,58,237,0.08) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.04) 0%, transparent 60%);
+    }
+
+    /* Scanline effect */
+    .hero-spectrum::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(192,38,211,0.015) 2px,
+        rgba(192,38,211,0.015) 4px
+      );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 64px 32px;
+      max-width: 800px; margin: 0 auto; width: 100%;
+    }
+
+    .hero-readout {
+      font-family: var(--font-mono); font-size: 10px; color: rgba(192,38,211,0.5);
+      letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 9vw, 88px);
+      font-weight: 200; line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--off-white); margin-bottom: 40px;
+    }
+
+    .hero h1 .glow {
+      color: var(--signal-bright);
+      text-shadow: 0 0 40px rgba(224,64,251,0.4), 0 0 80px rgba(224,64,251,0.15);
+    }
+
+    .hero-sub {
+      font-size: 15px; font-weight: 300; color: var(--mid);
+      max-width: 44ch; line-height: 1.7; margin-bottom: 48px;
+    }
+
+    .hero-bar {
+      border-top: 1px solid rgba(192,38,211,0.15); padding: 16px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-mono); font-size: 10px; color: var(--mid);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      position: relative; z-index: 1;
+    }
+    .hero-pulse {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--signal-bright);
+      box-shadow: 0 0 8px rgba(224,64,251,0.8), 0 0 20px rgba(224,64,251,0.3);
+    }
+
+    /* POSITIONING */
+    .big-idea {
+      font-size: clamp(20px, 4vw, 30px); font-weight: 200;
+      line-height: 1.35; letter-spacing: -0.015em;
+      color: var(--pale); margin-bottom: 40px;
+      border-left: 1px solid var(--signal); padding-left: 24px;
+    }
+
+    p.body { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 58ch; margin-bottom: 32px; }
+
+    .trait-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(192,38,211,0.08); margin-top: 40px; }
+    @media (max-width: 600px) { .trait-grid { grid-template-columns: 1fr; } }
+    .trait-cell { background: var(--void); padding: 28px 24px; }
+    .trait-name { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal-warm); margin-bottom: 10px; }
+    .trait-desc { font-size: 14px; font-weight: 300; line-height: 1.65; color: var(--mid); }
+
+    /* COLORS */
+    .color-system { margin-top: 40px; display: grid; gap: 2px; }
+    .color-row { display: flex; gap: 2px; }
+    .color-chip { flex: 1; height: 80px; display: flex; align-items: flex-end; padding: 10px 12px; }
+    .color-chip-label { font-family: var(--font-mono); font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5; }
+    .signal-spectrum {
+      height: 120px; margin-top: 2px;
+      background: linear-gradient(135deg, #7c3aed 0%, #c026d3 40%, #e040fb 70%, #f472b6 100%);
+      display: flex; align-items: flex-end; padding: 16px 20px;
+    }
+    .signal-spectrum-label { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.9); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.6; }
+
+    /* TYPE */
+    .type-system { margin-top: 40px; }
+    .type-row { padding: 40px 0; border-bottom: 1px solid rgba(192,38,211,0.08); }
+    .type-row:first-child { border-top: 1px solid rgba(192,38,211,0.08); }
+    .type-meta { font-family: var(--font-mono); font-size: 9px; color: var(--mid); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+    .t-display { font-size: clamp(52px, 12vw, 104px); font-weight: 200; line-height: 0.9; letter-spacing: -0.04em; color: var(--off-white); }
+    .t-display .glow { color: var(--signal-bright); text-shadow: 0 0 30px rgba(224,64,251,0.3); }
+    .t-headline { font-size: clamp(26px, 5vw, 46px); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; color: var(--pale); }
+    .t-body-type { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 56ch; }
+    .t-mono-type { font-family: var(--font-mono); font-size: 12px; font-weight: 400; line-height: 1.6; color: var(--signal-warm); }
+    .t-label { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-bright); }
+
+    /* PHOTO */
+    .photo-grid { display: grid; gap: 2px; margin-top: 40px; }
+    .photo-frame { position: relative; overflow: hidden; background: var(--deep); }
+    .photo-frame img { width: 100%; display: block; filter: saturate(1.1) contrast(1.05); }
+    .photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px 20px 16px;
+      background: linear-gradient(to top, rgba(4,3,10,0.85) 0%, transparent 100%);
+    }
+    .photo-caption-title { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal-bright); margin-bottom: 4px; }
+    .photo-caption-sub { font-family: var(--font-mono); font-size: 10px; color: var(--mid); letter-spacing: 0.04em; }
+    .photo-tag { position: absolute; top: 16px; right: 16px; font-family: var(--font-mono); font-size: 9px; color: var(--signal-bright); background: rgba(4,3,10,0.7); border: 1px solid rgba(192,38,211,0.3); padding: 3px 8px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* COMPOSITIONS */
+    .comp-hero {
+      background: var(--void); padding: 72px 32px;
+      border-top: 1px solid rgba(192,38,211,0.1);
+      border-bottom: 1px solid rgba(192,38,211,0.1);
+      position: relative; overflow: hidden;
+    }
+    .comp-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 75% 50%, rgba(192,38,211,0.08) 0%, transparent 60%);
+    }
+    .comp-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .comp-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal-warm); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+    .comp-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--signal-warm); }
+    .comp-headline { font-size: clamp(36px, 8vw, 72px); font-weight: 200; line-height: 1; letter-spacing: -0.03em; color: var(--off-white); margin-bottom: 28px; }
+    .comp-body { font-size: 15px; font-weight: 300; line-height: 1.7; color: var(--mid); max-width: 44ch; margin-bottom: 40px; }
+    .comp-cta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--signal-bright); display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .comp-cta::after { content: '→'; }
+
+    /* DATA UI V3 */
+    .data-v3 { font-family: var(--font-mono); border: 1px solid rgba(192,38,211,0.15); overflow: hidden; margin-top: 2px; }
+    .data-v3-header { background: var(--deep); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(192,38,211,0.12); }
+    .data-v3-title { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--light); }
+    .data-v3-live { font-size: 9px; letter-spacing: 0.1em; color: var(--signal-bright); display: flex; align-items: center; gap: 6px; }
+    .data-v3-live::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--signal-bright); box-shadow: 0 0 6px rgba(224,64,251,0.8); }
+    .data-v3-row { background: var(--void); padding: 10px 20px; display: grid; grid-template-columns: 1fr auto; border-bottom: 1px solid rgba(192,38,211,0.06); }
+    .data-v3-key { font-size: 11px; font-weight: 300; color: var(--mid); }
+    .data-v3-val { font-size: 11px; font-weight: 500; color: var(--light); }
+    .data-v3-val.alert { color: var(--signal-bright); text-shadow: 0 0 8px rgba(224,64,251,0.4); }
+
+    /* LOGO */
+    .logo-cells { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 40px; }
+    .logo-cell { display: flex; align-items: center; justify-content: center; min-height: 160px; }
+    .logo-cell-void { background: var(--void); border: 1px solid rgba(192,38,211,0.12); }
+    .logo-cell-white { background: var(--white); }
+    .logo-cell-signal { background: linear-gradient(135deg, #7c3aed, #c026d3); }
+    .logo-lockup { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .logotype { font-family: var(--font-sans); font-size: 30px; font-weight: 200; letter-spacing: -0.03em; }
+    .logo-sub { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; }
+
+    /* FOOTER */
+    footer { background: var(--void); padding: 48px 32px; border-top: 1px solid rgba(192,38,211,0.1); }
+    .footer-inner { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-label { font-family: var(--font-mono); font-size: 10px; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8; }
+    .footer-label strong { color: var(--light); display: block; }
+    .footer-v { font-family: var(--font-mono); font-size: 28px; font-weight: 200; color: var(--signal-cool); letter-spacing: -0.04em; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>F</span>ormant</div>
+  <div class="nav-right">
+    <div class="nav-tag">V3 · Frequency</div>
+    <a class="nav-back" href="../index.html">← V1 Classic</a>
+    <a class="nav-back" href="../v2/index.html">← V2 Contemporary</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-spectrum"></div>
+  <div class="hero-content">
+    <div class="hero-readout">
+      SPECTRAL_SCAN · ACTIVE<br>
+      FREQ_RANGE 0.1Hz–40kHz · 47 CHANNELS<br>
+      ANOMALY_THRESHOLD 0.87 σ
+    </div>
+    <h1>We see in<br>spectra you<br><span class="glow">can't.</span></h1>
+    <p class="hero-sub">Physical operations radiate information at frequencies no human can perceive. Formant reads all of them. The failure was already visible — we just needed the right instrument.</p>
+  </div>
+  <div class="hero-bar">
+    <span>Formant.ai · V3 Frequency</span>
+    <div class="hero-pulse"></div>
+    <span>March 2026</span>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="section" id="positioning">
+  <div class="label">01 — Brand Positioning</div>
+  <div class="big-idea">V3 leans hardest into the mystery. Formant sees in spectra — infrared, ultraviolet, frequencies humans can't perceive. The physical world is already broadcasting. We just built the receiver.</div>
+  <p class="body">The brand idea made literal: machines radiate information at every frequency. The anomaly was never hidden — it was just invisible to the tools being used. Formant changes that.</p>
+
+  <div class="trait-grid">
+    <div class="trait-cell">
+      <div class="trait-name">Spectral</div>
+      <div class="trait-desc">Sees beyond the visible. The physical world broadcasts constantly at frequencies no human monitors. Until now.</div>
+    </div>
+    <div class="trait-cell">
+      <div class="trait-name">Precise</div>
+      <div class="trait-desc">Not "AI-powered." A specific number, a specific unit, a specific deviation at a specific time.</div>
+    </div>
+    <div class="trait-cell">
+      <div class="trait-name">Uncanny</div>
+      <div class="trait-desc">The knowledge should feel slightly impossible. "How did they know?" That reaction is the brand working.</div>
+    </div>
+    <div class="trait-cell">
+      <div class="trait-name">Physical</div>
+      <div class="trait-desc">Not digital automation. The real world — machines, heat, vibration, pressure, consequence.</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLORS -->
+<section class="section" id="color">
+  <div class="label">02 — Color System</div>
+  <p class="body">Void-black as foundation — the darkness between frequencies. The signal is phosphorescent violet-magenta: infrared film, UV fluorescence, spectral analysis readouts. The color of the invisible made visible.</p>
+
+  <div class="color-system">
+    <div class="color-row">
+      <div class="color-chip" style="background: #04030a; flex: 2;">
+        <div class="color-chip-label" style="color: #6b5b8a;">Void<br>#04030a</div>
+      </div>
+      <div class="color-chip" style="background: #0d0918;">
+        <div class="color-chip-label" style="color: #6b5b8a;">Deep<br>#0d0918</div>
+      </div>
+      <div class="color-chip" style="background: #170f2e;">
+        <div class="color-chip-label" style="color: #6b5b8a;">Dark<br>#170f2e</div>
+      </div>
+      <div class="color-chip" style="background: #6b5b8a;">
+        <div class="color-chip-label" style="color: #e8e0f4;">Mid<br>#6b5b8a</div>
+      </div>
+      <div class="color-chip" style="background: #b09fcc;">
+        <div class="color-chip-label" style="color: #170f2e;">Light<br>#b09fcc</div>
+      </div>
+    </div>
+    <div class="signal-spectrum">
+      <div class="signal-spectrum-label">Signal Spectrum · Phosphorescent Violet-Magenta<br>#7c3aed → #c026d3 → #e040fb · Infrared · UV · Spectral</div>
+    </div>
+    <div class="color-row">
+      <div class="color-chip" style="background: #7c3aed;">
+        <div class="color-chip-label" style="color: rgba(255,255,255,0.7);">Deep UV<br>#7c3aed</div>
+      </div>
+      <div class="color-chip" style="background: #c026d3;">
+        <div class="color-chip-label" style="color: rgba(255,255,255,0.8);">Signal<br>#c026d3</div>
+      </div>
+      <div class="color-chip" style="background: #e040fb;">
+        <div class="color-chip-label" style="color: rgba(255,255,255,0.9);">Hot<br>#e040fb</div>
+      </div>
+      <div class="color-chip" style="background: rgba(192,38,211,0.12); border: 1px solid rgba(192,38,211,0.2);">
+        <div class="color-chip-label" style="color: #c026d3;">Glow<br>12% opacity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPE -->
+<section class="section" id="type">
+  <div class="label">03 — Typography</div>
+  <p class="body">Same IBM Plex pairing. In V3 the mono does more work — data readouts feel like instrument panels. The display weight drops to 200; at this scale it reads as signal, not decoration.</p>
+
+  <div class="type-system">
+    <div class="type-row">
+      <div class="type-meta">Display — IBM Plex Sans ExtraLight 200</div>
+      <div class="t-display">We see what<br>others <span class="glow">miss.</span></div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Headline — IBM Plex Sans Light 300</div>
+      <div class="t-headline">The physical world has been<br>broadcasting. We finally listened.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Body</div>
+      <div class="t-body-type">Every machine radiates data at frequencies its operators don't monitor. Formant reads all of them — simultaneously, continuously, at every site in your fleet. The failure was never hidden. It was just invisible to the tools being used.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Mono / Data / Instrument</div>
+      <div class="t-mono-type">SPECTRAL_SCAN · BEARING_UNIT_14<br>FREQ_SIGNATURE ░░░░░▓▓▓▓████▓▓░░ ANOMALOUS<br>DELTA_TEMP +12.4°C · PREDICTION 72–96H</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">Label</div>
+      <div class="t-label">Frequency Detection — Physical AI — Active Scan</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHY -->
+<section class="section" id="photo">
+  <div class="label">04 — Photography Direction</div>
+  <p class="body">Infrared and spectral imaging aesthetic — the physical world revealed in frequencies humans can't see. False-color IR photography, FLIR thermal, UV fluorescence. The machine as subject of scientific observation.</p>
+
+  <div class="photo-grid">
+    <div class="photo-frame" style="aspect-ratio: 1.5;">
+      <img src="v3-photo-1-infrared-robot.png" alt="Infrared robot photography">
+      <div class="photo-tag">IR Film · False Color</div>
+      <div class="photo-caption">
+        <div class="photo-caption-title">Infrared register</div>
+        <div class="photo-caption-sub">The world as seen in spectra beyond human perception.</div>
+      </div>
+    </div>
+    <div class="photo-frame" style="aspect-ratio: 2.2;">
+      <img src="v3-photo-2-thermal.png" alt="Thermal spectral photography">
+      <div class="photo-tag">Spectral · UV Fluorescence</div>
+      <div class="photo-caption">
+        <div class="photo-caption-title">Heat signature</div>
+        <div class="photo-caption-sub">The invisible made visible. The anomaly, radiating.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px; border: 1px solid rgba(192,38,211,0.12); padding: 20px 24px;">
+    <p style="font-family: var(--font-mono); font-size: 11px; color: var(--mid); line-height: 1.8; max-width: none;">
+      Direction notes (V3):<br>
+      — Infrared film aesthetic: vegetation glows, machines render in deep shadow and spectral highlight.<br>
+      — False-color: violet-magenta dominant. The world as instrument readout.<br>
+      — Reference: early scientific photography, IR Kodak Aerochrome, FLIR thermal imaging, UV fluorescence.<br>
+      — The camera sees what the eye cannot. That IS the product concept.
+    </p>
+  </div>
+</section>
+
+<!-- COMPOSITION -->
+<section style="padding: 0;">
+  <div class="comp-hero">
+    <div class="comp-inner">
+      <div class="comp-eyebrow">Spectral Detection · Physical AI</div>
+      <div class="comp-headline">Already<br>broadcasting.</div>
+      <div class="comp-body">Your machines have been transmitting anomaly data for weeks. We were the only ones listening.</div>
+      <a class="comp-cta" href="#">See what we hear</a>
+    </div>
+  </div>
+
+  <div style="max-width: 800px; margin: 0 auto; padding: 0 0 0 0;">
+    <div class="data-v3">
+      <div class="data-v3-header">
+        <div class="data-v3-title">Spectral Monitor · Unit 14</div>
+        <div class="data-v3-live">Active Scan</div>
+      </div>
+      <div class="data-v3-row"><div class="data-v3-key">freq_band_monitored</div><div class="data-v3-val">0.1Hz – 40kHz</div></div>
+      <div class="data-v3-row"><div class="data-v3-key">bearing_resonance</div><div class="data-v3-val alert">ANOMALOUS ▓▓▓▓▓▓▓░░░</div></div>
+      <div class="data-v3-row"><div class="data-v3-key">thermal_signature</div><div class="data-v3-val alert">+12.4°C above baseline</div></div>
+      <div class="data-v3-row"><div class="data-v3-key">vibration_harmonics</div><div class="data-v3-val alert">0.84 mm/s rms · rising</div></div>
+      <div class="data-v3-row"><div class="data-v3-key">predicted_failure</div><div class="data-v3-val alert">72–96 hours</div></div>
+      <div class="data-v3-row"><div class="data-v3-key">human_visible</div><div class="data-v3-val">No</div></div>
+      <div class="data-v3-row"><div class="data-v3-key">formant_detected</div><div class="data-v3-val" style="color: var(--signal-bright);">Yes · 14:32:07 PST</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section class="section" id="logo">
+  <div class="label">07 — Logo · V3 Expression</div>
+  <p class="body">The same F-with-signal-disruption direction, expressed in the V3 frequency palette. The mark glows slightly — the signal visible against the void.</p>
+
+  <div class="logo-cells">
+    <div class="logo-cell logo-cell-void">
+      <div class="logo-lockup">
+        <div class="logotype" style="color: var(--off-white);"><span style="color: var(--signal-bright); font-weight: 500; text-shadow: 0 0 20px rgba(224,64,251,0.5);">F</span>ormant</div>
+        <div class="logo-sub" style="color: var(--mid);">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-cell-white">
+      <div class="logo-lockup">
+        <div class="logotype" style="color: #0a0a0f;"><span style="color: var(--signal); font-weight: 500;">F</span>ormant</div>
+        <div class="logo-sub" style="color: #9898b8;">Physical AI</div>
+      </div>
+    </div>
+    <div class="logo-cell logo-cell-signal">
+      <div class="logo-lockup">
+        <div class="logotype" style="color: rgba(255,255,255,0.95); font-weight: 300;"><span style="font-weight: 500;">F</span>ormant</div>
+        <div class="logo-sub" style="color: rgba(255,255,255,0.5);">Physical AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-label"><strong>Formant Brand V3</strong>Frequency · March 2026<br>~/Projects/formant-brand/v3/</div>
+    <div class="footer-v">V3</div>
+  </div>
+</footer>
+
+</body>
+</html>

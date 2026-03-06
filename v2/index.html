@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formant — Brand System V2 · Contemporary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0f;
+      --off-black: #12121a;
+      --dark: #1e1e2e;
+      --mid: #5a5a7a;
+      --light: #9898b8;
+      --pale: #ddddf0;
+      --off-white: #f4f4f8;
+      --white: #ffffff;
+
+      /* V2 accent: electric indigo — deep frequency, not corporate blue */
+      --signal: #4f46e5;
+      --signal-bright: #6366f1;
+      --signal-dim: #312e81;
+      --signal-glow: rgba(99, 102, 241, 0.15);
+
+      --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { font-family: var(--font-sans); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--pale);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 52px;
+    }
+    .nav-logo { font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--black); letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--signal); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-tag { font-family: var(--font-mono); font-size: 10px; color: var(--signal); background: var(--signal-glow); padding: 3px 8px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a { font-family: var(--font-mono); font-size: 10px; color: var(--mid); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-back { font-family: var(--font-mono); font-size: 10px; color: var(--mid); text-decoration: none; letter-spacing: 0.06em; }
+
+    /* LAYOUT */
+    .section { padding: 96px 32px; max-width: 800px; margin: 0 auto; }
+    .section + .section { border-top: 1px solid var(--pale); }
+    .section-full { padding: 96px 32px; }
+    .section-full .inner { max-width: 800px; margin: 0 auto; }
+
+    .label {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--signal);
+      margin-bottom: 40px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100svh;
+      background: var(--white);
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--pale) 1px, transparent 1px),
+        linear-gradient(90deg, var(--pale) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 64px 32px;
+      max-width: 800px; margin: 0 auto; width: 100%;
+    }
+
+    .hero-tag {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--signal); margin-bottom: 32px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--signal); }
+
+    .hero h1 {
+      font-size: clamp(48px, 10vw, 96px);
+      font-weight: 200;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--black);
+      margin-bottom: 40px;
+    }
+
+    .hero h1 em { font-style: normal; color: var(--signal); }
+
+    .hero-sub {
+      font-size: 16px; font-weight: 300; color: var(--mid);
+      max-width: 48ch; line-height: 1.7; margin-bottom: 48px;
+    }
+
+    .hero-bar {
+      border-top: 1px solid var(--pale); padding: 16px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-mono); font-size: 10px; color: var(--light);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      position: relative; z-index: 1;
+      max-width: 100%;
+    }
+
+    .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); }
+
+    /* POSITIONING */
+    .big-idea {
+      font-size: clamp(22px, 4vw, 34px); font-weight: 200;
+      line-height: 1.3; letter-spacing: -0.02em;
+      color: var(--black); margin-bottom: 40px;
+      border-left: 1px solid var(--signal); padding-left: 24px;
+    }
+
+    .trait-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--pale); margin-top: 40px; }
+    @media (max-width: 600px) { .trait-grid { grid-template-columns: 1fr; } }
+
+    .trait-cell {
+      background: var(--white); padding: 28px 24px;
+    }
+    .trait-name {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal);
+      margin-bottom: 10px;
+    }
+    .trait-desc { font-size: 14px; font-weight: 300; line-height: 1.65; color: var(--mid); }
+
+    /* COLORS */
+    .color-system { margin-top: 40px; display: grid; gap: 2px; }
+
+    .color-row { display: flex; gap: 2px; }
+    .color-chip {
+      flex: 1; height: 80px; display: flex; align-items: flex-end;
+      padding: 10px 12px; position: relative;
+    }
+    .color-chip-label {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5;
+    }
+
+    .signal-band {
+      height: 120px; background: var(--signal);
+      display: flex; align-items: flex-end; padding: 16px 20px;
+      margin-top: 2px;
+    }
+    .signal-band-label {
+      font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.9);
+      letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.6;
+    }
+
+    /* TYPE */
+    .type-system { margin-top: 40px; }
+    .type-specimen-row {
+      padding: 40px 0; border-bottom: 1px solid var(--pale);
+    }
+    .type-specimen-row:first-child { border-top: 1px solid var(--pale); }
+    .type-meta { font-family: var(--font-mono); font-size: 9px; color: var(--light); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; }
+
+    .t-display { font-size: clamp(52px, 12vw, 108px); font-weight: 200; line-height: 0.9; letter-spacing: -0.04em; color: var(--black); }
+    .t-headline { font-size: clamp(28px, 6vw, 52px); font-weight: 300; line-height: 1.05; letter-spacing: -0.025em; }
+    .t-body { font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 56ch; }
+    .t-mono { font-family: var(--font-mono); font-size: 13px; font-weight: 400; line-height: 1.6; color: var(--mid); }
+    .t-accent { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--signal); }
+
+    /* PHOTO */
+    .photo-grid { display: grid; gap: 2px; margin-top: 40px; }
+    .photo-frame { position: relative; overflow: hidden; background: var(--pale); }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 20px 16px;
+      background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, transparent 100%);
+    }
+    .photo-overlay-title { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); margin-bottom: 3px; }
+    .photo-overlay-sub { font-family: var(--font-mono); font-size: 10px; color: var(--mid); }
+    .photo-overlay-tag {
+      position: absolute; top: 16px; right: 16px;
+      font-family: var(--font-mono); font-size: 9px; color: var(--signal);
+      background: rgba(255,255,255,0.9); padding: 3px 8px; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* COMPOSITIONS */
+    .comp-dark {
+      background: var(--black); padding: 64px 32px;
+      position: relative; overflow: hidden;
+    }
+    .comp-dark-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(79,70,229,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(79,70,229,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .comp-dark-content { position: relative; z-index: 1; max-width: 600px; }
+    .comp-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--signal-bright); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .comp-eyebrow::before { content: ''; width: 16px; height: 1px; background: var(--signal-bright); }
+    .comp-headline { font-size: clamp(32px, 7vw, 60px); font-weight: 200; line-height: 1.05; letter-spacing: -0.03em; color: var(--off-white); margin-bottom: 24px; }
+    .comp-body { font-size: 15px; font-weight: 300; line-height: 1.7; color: var(--mid); max-width: 44ch; margin-bottom: 36px; }
+    .comp-cta { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal-bright); display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .comp-cta::after { content: '→'; }
+
+    /* DATA UI */
+    .data-ui { background: var(--off-black); border: 1px solid rgba(79,70,229,0.2); padding: 0; overflow: hidden; font-family: var(--font-mono); margin-top: 2px; }
+    .data-ui-header { background: var(--dark); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(79,70,229,0.15); }
+    .data-ui-title { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pale); }
+    .data-ui-badge { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--signal-bright); background: rgba(99,102,241,0.12); padding: 2px 8px; display: flex; align-items: center; gap: 5px; }
+    .data-ui-badge::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--signal-bright); }
+    .data-row { padding: 10px 20px; display: grid; grid-template-columns: 1fr auto; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .data-key { font-size: 11px; font-weight: 300; color: var(--mid); letter-spacing: 0.04em; }
+    .data-val { font-size: 11px; font-weight: 500; color: var(--pale); }
+    .data-val.alert { color: var(--signal-bright); }
+
+    /* VOICE */
+    .voice-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--pale); margin-bottom: 1px; }
+    @media (max-width: 600px) { .voice-pair { grid-template-columns: 1fr; } }
+    .voice-cell { background: var(--white); padding: 24px; }
+    .voice-cell-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+    .voice-cell-label.bad { color: var(--light); }
+    .voice-cell-label.good { color: var(--signal); }
+    .voice-text { font-size: 14px; font-weight: 300; line-height: 1.65; color: var(--mid); }
+    .voice-text.bad { text-decoration: line-through; color: var(--pale); }
+
+    /* LOGO */
+    .logo-explorations { display: grid; gap: 2px; margin-top: 40px; }
+    .logo-cell { display: flex; align-items: center; justify-content: center; min-height: 160px; position: relative; }
+    .logo-on-white { background: var(--white); border: 1px solid var(--pale); }
+    .logo-on-black { background: var(--black); }
+    .logo-on-signal { background: var(--signal); }
+    .logo-on-grid { background: var(--white); background-image: linear-gradient(var(--pale) 1px, transparent 1px), linear-gradient(90deg, var(--pale) 1px, transparent 1px); background-size: 20px 20px; border: 1px solid var(--pale); }
+
+    .logotype { font-family: var(--font-sans); font-size: 32px; font-weight: 200; letter-spacing: -0.04em; }
+    .logotype .f { font-weight: 600; color: var(--signal); margin-right: -1px; }
+    .logotype-dark .f { color: var(--signal-bright); }
+    .logotype-signal { color: var(--white); }
+    .logotype-signal .f { color: rgba(255,255,255,0.7); font-weight: 300; }
+
+    .logo-sub { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 8px; }
+    .logo-lockup { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+
+    /* FOOTER */
+    footer { background: var(--black); padding: 48px 32px; margin-top: 0; }
+    .footer-inner { max-width: 800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-label { font-family: var(--font-mono); font-size: 10px; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8; }
+    .footer-label strong { color: var(--light); display: block; }
+    .footer-v { font-family: var(--font-mono); font-size: 28px; font-weight: 200; color: var(--signal-dim); letter-spacing: -0.04em; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>F</span>ormant</div>
+  <div class="nav-right">
+    <div class="nav-tag">V2 · Contemporary</div>
+    <a class="nav-back" href="../index.html">← V1 Classic</a>
+    <a class="nav-back" href="../v3/index.html">V3 Frequency →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Brand System V2 · Contemporary</div>
+    <h1>The physical<br>world has a<br><em>signal.</em></h1>
+    <p class="hero-sub">Physical operations running on guesswork. AI agents that see what others can't. Not prediction — precision.</p>
+  </div>
+  <div class="hero-bar">
+    <span>Formant.ai · March 2026</span>
+    <div class="hero-dot"></div>
+    <span>V2 · Contemporary System</span>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="section" id="positioning">
+  <div class="label">01 — Brand Positioning</div>
+  <div class="big-idea">Formant sees the physical world in spectra others don't monitor. The anomaly before the failure. The pattern before the incident.</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 58ch;">V2 shifts the register from documentary to editorial. Same brand conviction — quieter confidence, more contemporary surface. The world it operates in is precise, fast, and technically literate.</p>
+
+  <div class="trait-grid">
+    <div class="trait-cell">
+      <div class="trait-name">Precise</div>
+      <div class="trait-desc">Specific over general. Numbers over adjectives. One data point that matters over ten that don't.</div>
+    </div>
+    <div class="trait-cell">
+      <div class="trait-name">Intriguing</div>
+      <div class="trait-desc">Withholds just enough. Pulls you forward. The brand knows something. You want to find out what.</div>
+    </div>
+    <div class="trait-cell">
+      <div class="trait-name">Contemporary</div>
+      <div class="trait-desc">Not retrofuturism. Not steampunk tech. The present, very clearly seen.</div>
+    </div>
+    <div class="trait-cell">
+      <div class="trait-name">Physical</div>
+      <div class="trait-desc">Machines, operations, consequence. Things that exist in space and break when they fail.</div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR -->
+<section class="section" id="color">
+  <div class="label">02 — Color System</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 58ch; margin-bottom: 0;">White-dominant. The signal is electric indigo — deep frequency, the color of something being processed or transmitted. Not corporate blue. Not UI-purple. A frequency.</p>
+
+  <div class="color-system">
+    <div class="color-row">
+      <div class="color-chip" style="background: #0a0a0f; flex: 2;">
+        <div class="color-chip-label" style="color: #5a5a7a;">Black<br>#0a0a0f</div>
+      </div>
+      <div class="color-chip" style="background: #1e1e2e;">
+        <div class="color-chip-label" style="color: #5a5a7a;">Dark<br>#1e1e2e</div>
+      </div>
+      <div class="color-chip" style="background: #5a5a7a;">
+        <div class="color-chip-label" style="color: #ddddf0;">Mid<br>#5a5a7a</div>
+      </div>
+      <div class="color-chip" style="background: #9898b8;">
+        <div class="color-chip-label" style="color: #1e1e2e;">Light<br>#9898b8</div>
+      </div>
+      <div class="color-chip" style="background: #f4f4f8; border: 1px solid var(--pale);">
+        <div class="color-chip-label" style="color: #9898b8;">Off-white<br>#f4f4f8</div>
+      </div>
+    </div>
+    <div class="signal-band">
+      <div class="signal-band-label">Signal — Electric Indigo · #4f46e5<br>Frequency, transmission, precision</div>
+    </div>
+    <div class="color-row">
+      <div class="color-chip" style="background: #6366f1;">
+        <div class="color-chip-label" style="color: rgba(255,255,255,0.8);">Signal Bright<br>#6366f1</div>
+      </div>
+      <div class="color-chip" style="background: #312e81;">
+        <div class="color-chip-label" style="color: rgba(255,255,255,0.5);">Signal Dim<br>#312e81</div>
+      </div>
+      <div class="color-chip" style="background: rgba(79,70,229,0.1); border: 1px solid rgba(79,70,229,0.2);">
+        <div class="color-chip-label" style="color: #4f46e5;">Signal Glow<br>10% opacity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="section" id="type">
+  <div class="label">03 — Typography</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 58ch; margin-bottom: 0;">Same IBM Plex pairing, different register. Extra-light (200) for display — creates a tension between scale and delicacy. The mono carries more weight here; it's not just labels, it's structural.</p>
+
+  <div class="type-system">
+    <div class="type-specimen-row">
+      <div class="type-meta">Display — IBM Plex Sans ExtraLight 200 / −4% tracking</div>
+      <div class="t-display">Signal<br>detected.</div>
+    </div>
+    <div class="type-specimen-row">
+      <div class="type-meta">Headline — IBM Plex Sans Light 300 / −2.5% tracking</div>
+      <div class="t-headline">Physical AI for operations<br>that can't afford to guess.</div>
+    </div>
+    <div class="type-specimen-row">
+      <div class="type-meta">Body — IBM Plex Sans Light / 1.75 leading</div>
+      <div class="t-body">Our agent monitors 47 simultaneous data streams. When unit 14's bearing temperature deviates 12 degrees from baseline, the agent doesn't wait for a human to notice. It already acted.</div>
+    </div>
+    <div class="type-specimen-row">
+      <div class="type-meta">Mono / Data — IBM Plex Mono Regular</div>
+      <div class="t-mono">UNIT_14 · BEARING_TEMP_DELTA +12.4°C · ANOMALY_SCORE 0.94<br>PREDICTED_FAILURE 72–96H · ESCALATED 14:32:07 PST</div>
+    </div>
+    <div class="type-specimen-row">
+      <div class="type-meta">Label — IBM Plex Mono Medium / +16% tracking / Signal</div>
+      <div class="t-accent">Physical Operations — Active Fleet Monitoring</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHY -->
+<section class="section" id="photo">
+  <div class="label">04 — Photography Direction</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 58ch; margin-bottom: 0;">V2 shifts from Hasselblad/Tri-X documentary to contemporary editorial — crisp, precise, slightly cool. Color photography where the color itself carries information. The machine as a precision instrument.</p>
+
+  <div class="photo-grid">
+    <div class="photo-frame" style="aspect-ratio: 1.5;">
+      <img src="v2-photo-1-sensor.png" alt="Contemporary hardware photography">
+      <div class="photo-overlay-tag">Editorial · Color</div>
+      <div class="photo-overlay">
+        <div class="photo-overlay-title">Precision detail</div>
+        <div class="photo-overlay-sub">The machine as precision instrument. Color carries meaning.</div>
+      </div>
+    </div>
+    <div class="photo-frame" style="aspect-ratio: 2.2;">
+      <img src="v2-photo-2-facility.png" alt="Contemporary facility photography">
+      <div class="photo-overlay-tag">Architecture · Scale</div>
+      <div class="photo-overlay">
+        <div class="photo-overlay-title">Operational scale</div>
+        <div class="photo-overlay-sub">The space as subject. Precision and consequence.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px; border: 1px solid var(--pale); padding: 20px 24px;">
+    <p style="font-family: var(--font-mono); font-size: 11px; color: var(--mid); line-height: 1.8; max-width: none;">
+      Direction notes (V2):<br>
+      — Color photography. Cool grading — indigo shadows, clean whites.<br>
+      — Editorial precision: crisp focus, deliberate composition, no stock aesthetics.<br>
+      — Specular highlights on metal surfaces — the world as information-dense.<br>
+      — Reference: Hufton+Crow architecture, Wired editorial, Bloomberg Businessweek photography.
+    </p>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="section" id="voice">
+  <div class="label">05 — Voice & Tone</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 58ch; margin-bottom: 32px;">V2 voice is slightly more contemporary — shorter sentences, more white space in the language itself.</p>
+
+  <div>
+    <div class="voice-pair">
+      <div class="voice-cell"><div class="voice-cell-label bad">Not this</div><div class="voice-text bad">Our AI-powered platform leverages machine learning to proactively identify potential issues before they become problems.</div></div>
+      <div class="voice-cell"><div class="voice-cell-label good">This</div><div class="voice-text">We found the failure. 72 hours before it happened.</div></div>
+    </div>
+    <div class="voice-pair">
+      <div class="voice-cell"><div class="voice-cell-label bad">Not this</div><div class="voice-text bad">Formant is the leading platform for enterprise robotics operations management at scale.</div></div>
+      <div class="voice-cell"><div class="voice-cell-label good">This</div><div class="voice-text">Physical operations. Finally intelligent.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSITIONS -->
+<section class="section-full" id="compositions">
+  <div class="inner">
+    <div class="label">06 — Compositions</div>
+  </div>
+
+  <div class="comp-dark" style="margin-top: 40px;">
+    <div class="comp-dark-grid"></div>
+    <div class="comp-dark-content" style="max-width: 800px; margin: 0 auto;">
+      <div class="comp-eyebrow">Physical AI · 2026</div>
+      <div class="comp-headline">The anomaly<br>was always there.</div>
+      <div class="comp-body">Formant didn't predict it. It was already reading it — 47 streams, continuously, before you knew to look.</div>
+      <a class="comp-cta" href="#">See the platform</a>
+    </div>
+  </div>
+
+  <div style="max-width: 800px; margin: 2px auto 0;">
+    <div class="data-ui">
+      <div class="data-ui-header">
+        <div class="data-ui-title">Fleet Monitor · Bay Area South · 47 Units</div>
+        <div class="data-ui-badge">1 Anomaly Active</div>
+      </div>
+      <div class="data-row"><div class="data-key">units_online</div><div class="data-val">47 / 47</div></div>
+      <div class="data-row"><div class="data-key">anomaly_unit</div><div class="data-val alert">Unit 14</div></div>
+      <div class="data-row"><div class="data-key">anomaly_type</div><div class="data-val alert">bearing_temp_deviation</div></div>
+      <div class="data-row"><div class="data-key">delta</div><div class="data-val alert">+12.4°C above 7-day baseline</div></div>
+      <div class="data-row"><div class="data-key">predicted_failure_window</div><div class="data-val alert">72–96 hours</div></div>
+      <div class="data-row"><div class="data-key">action</div><div class="data-val">Escalated to ops team · 14:32:07</div></div>
+      <div class="data-row"><div class="data-key">all_other_units</div><div class="data-val">Nominal</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section class="section" id="logo">
+  <div class="label">07 — Logo · V2 Expression</div>
+  <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 58ch; margin-bottom: 0;">Same geometric F-with-signal direction, expressed in the V2 palette. The signal color shifts from warm red to electric indigo.</p>
+
+  <div class="logo-explorations">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;">
+      <div class="logo-cell logo-on-white">
+        <div class="logo-lockup">
+          <div class="logotype"><span class="f">F</span>ormant</div>
+          <div class="logo-sub" style="color: var(--light);">Physical AI</div>
+        </div>
+      </div>
+      <div class="logo-cell logo-on-black">
+        <div class="logo-lockup logotype-dark">
+          <div class="logotype" style="color: var(--off-white);"><span class="f" style="color: var(--signal-bright);">F</span>ormant</div>
+          <div class="logo-sub" style="color: var(--mid);">Physical AI</div>
+        </div>
+      </div>
+      <div class="logo-cell logo-on-signal">
+        <div class="logo-lockup logotype-signal">
+          <div class="logotype" style="color: var(--white); font-weight: 300;"><span style="font-weight: 500;">F</span>ormant</div>
+          <div class="logo-sub" style="color: rgba(255,255,255,0.6);">Physical AI</div>
+        </div>
+      </div>
+    </div>
+    <div class="logo-cell logo-on-grid" style="min-height: 120px;">
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--mid); text-align: center; letter-spacing: 0.1em;">Signal color shifts to electric indigo in V2 context. Same F-waveform mark direction applies.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-label"><strong>Formant Brand V2</strong>Contemporary · March 2026<br>~/Projects/formant-brand/v2/</div>
+    <div class="footer-v">V2</div>
+  </div>
+</footer>
+
+</body>
+</html>
