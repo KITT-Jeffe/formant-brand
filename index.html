@@ -390,38 +390,37 @@
 
     .photo-card {
       background: var(--off-black);
-      padding: 40px 24px;
+      padding: 0;
       position: relative;
       overflow: hidden;
-      min-height: 200px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
     }
 
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.05);
+    }
+
     .photo-card-grain {
       position: absolute;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.12'/%3E%3C/svg%3E");
       pointer-events: none;
-    }
-
-    /* Simulated B&W photo placeholders */
-    .photo-card-1 {
-      background: linear-gradient(160deg, #1a1a18 0%, #2e2a26 40%, #0e0e0d 100%);
-    }
-
-    .photo-card-2 {
-      background: linear-gradient(200deg, #0e0e0d 0%, #1e1c18 50%, #2a2a26 100%);
-    }
-
-    .photo-card-3 {
-      background: linear-gradient(120deg, #1c1c1a 0%, #0e0e0d 60%, #1a1816 100%);
+      z-index: 1;
     }
 
     .photo-caption {
-      position: relative;
-      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 32px 20px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
     }
 
     .photo-caption-title {
@@ -437,7 +436,7 @@
     .photo-caption-sub {
       font-family: var(--font-mono);
       font-size: 10px;
-      color: var(--mid-grey);
+      color: var(--light-grey);
       letter-spacing: 0.06em;
     }
 
@@ -447,10 +446,10 @@
       right: 16px;
       font-family: var(--font-mono);
       font-size: 9px;
-      color: var(--dark-grey);
+      color: rgba(255,255,255,0.35);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      z-index: 1;
+      z-index: 2;
     }
 
     /* VOICE */
@@ -940,41 +939,47 @@
     <p>Machines shot like portraits. The Hasselblad 500C/M with Kodak Tri-X sets the register: square format or cinematic crop, visible grain, high contrast, deliberate light. Not product photography. Not lifestyle. Documentary.</p>
 
     <div class="photo-direction">
-      <div class="photo-card photo-card-1">
-        <div class="photo-card-grain"></div>
+
+      <!-- Robot arm portrait — full width -->
+      <div class="photo-card" style="aspect-ratio: 1;">
+        <img src="2026-03-05-hardware-portrait-robot-arm.png" alt="Industrial robot arm — Hasselblad 500C/M · Tri-X 400">
         <div class="photo-meta">Hasselblad 500C/M · Tri-X 400</div>
         <div class="photo-caption">
-          <div class="photo-caption-title">Industrial subject as portrait</div>
-          <div class="photo-caption-sub">Close. Specific. The object matters. Square format preferred.</div>
+          <div class="photo-caption-title">Hardware as portrait subject</div>
+          <div class="photo-caption-sub">The object as protagonist. Close, specific, unposed.</div>
         </div>
       </div>
 
+      <!-- Sensor + Technician — side by side -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px;">
-        <div class="photo-card photo-card-2" style="min-height: 160px;">
-          <div class="photo-card-grain"></div>
-          <div class="photo-meta" style="font-size: 8px;">Grain as texture</div>
+        <div class="photo-card" style="aspect-ratio: 1;">
+          <img src="2026-03-05-hardware-portrait-sensor.png" alt="Industrial sensor — Tri-X 400">
+          <div class="photo-meta">Grain as texture</div>
           <div class="photo-caption">
-            <div class="photo-caption-title" style="font-size: 10px;">Not artifact.</div>
-            <div class="photo-caption-sub">Material quality.</div>
+            <div class="photo-caption-title">The sensor</div>
+            <div class="photo-caption-sub">What it reads. What it knows.</div>
           </div>
         </div>
-        <div class="photo-card photo-card-3" style="min-height: 160px;">
-          <div class="photo-card-grain"></div>
-          <div class="photo-meta" style="font-size: 8px;">Human + machine</div>
+        <div class="photo-card" style="aspect-ratio: 1;">
+          <img src="2026-03-05-hardware-portrait-technician.png" alt="Field technician — Tri-X 400">
+          <div class="photo-meta">Human + machine</div>
           <div class="photo-caption">
-            <div class="photo-caption-title" style="font-size: 10px;">The interface.</div>
+            <div class="photo-caption-title">The interface</div>
             <div class="photo-caption-sub">Earned relationship.</div>
           </div>
         </div>
       </div>
 
-      <div class="photo-card photo-card-1" style="min-height: 140px;">
-        <div class="photo-card-grain"></div>
+      <!-- Facility — cinematic wide -->
+      <div class="photo-card" style="aspect-ratio: 2.39;">
+        <img src="2026-03-05-hardware-portrait-facility.png" alt="Industrial facility at night — Tri-X 1600">
+        <div class="photo-meta">Tri-X 400 @ EI 1600 · pushed</div>
         <div class="photo-caption">
-          <div class="photo-caption-title">Cinematic — 2.39:1 crop</div>
-          <div class="photo-caption-sub">For wide contexts. The frame creates authority. Let negative space work.</div>
+          <div class="photo-caption-title">Cinematic — 2.39:1</div>
+          <div class="photo-caption-sub">Scale and atmosphere. The physical world at work, unsupervised.</div>
         </div>
       </div>
+
     </div>
 
     <div style="margin-top: 32px; padding: 20px 24px; border: 1px solid #2e2e2b;">
