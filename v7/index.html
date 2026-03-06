@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formant — Brand System V7 · Restraint</title>
+  <title>Formant — Brand System V7 · Industrial Warm</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans+Condensed:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #0f0f0e;
-      --near-black: #1c1c1a;
-      --mid: #737370;
-      --light: #b0b0aa;
-      --pale: #e4e4de;
-      --off-white: #f6f6f2;
-      --white: #ffffff;
-      --signal: #c0392b;
+      --cream: #f5f0e8;
+      --parchment: #ede6d6;
+      --warm-mid: #9c9080;
+      --warm-dark: #3a3228;
+      --black: #1a1510;
+      --orange: #d95f1a;
+      --orange-pale: #f5e4d4;
       --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+      --font-cond: 'IBM Plex Sans Condensed', system-ui, sans-serif;
       --font-mono: 'IBM Plex Mono', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; }
-    body { font-family: var(--font-sans); background: var(--black); color: var(--off-white); -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--black); -webkit-font-smoothing: antialiased; }
 
     /* NAV */
     nav {
@@ -30,259 +30,178 @@
       background: var(--black);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 40px; height: 44px;
-      border-bottom: 1px solid #1e1e1c;
     }
-    .nav-logo { font-family: var(--font-mono); font-size: 11px; font-weight: 400; color: var(--off-white); letter-spacing: 0.04em; }
-    .nav-logo em { font-style: normal; color: var(--signal); }
+    .nav-logo { font-family: var(--font-mono); font-size: 11px; font-weight: 400; color: var(--cream); letter-spacing: 0.04em; }
+    .nav-logo em { font-style: normal; color: var(--orange); }
     .nav-right { display: flex; align-items: center; gap: 32px; }
-    .nav-tag { font-family: var(--font-mono); font-size: 9px; color: var(--mid); letter-spacing: 0.14em; text-transform: uppercase; }
+    .nav-tag { font-family: var(--font-mono); font-size: 9px; color: var(--warm-mid); letter-spacing: 0.14em; text-transform: uppercase; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a { font-family: var(--font-mono); font-size: 9px; color: var(--mid); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; }
-    .nav-links a:hover { color: var(--off-white); }
-    .nav-back { font-family: var(--font-mono); font-size: 9px; color: #3a3a38; text-decoration: none; letter-spacing: 0.06em; }
-    .nav-back:hover { color: var(--mid); }
+    .nav-links a { font-family: var(--font-mono); font-size: 9px; color: var(--warm-mid); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-back { font-family: var(--font-mono); font-size: 9px; color: #4a4035; text-decoration: none; }
+    .nav-back:hover { color: var(--warm-mid); }
 
-    /* HERO — TE-inspired: large bilingual type + grayscale gradient center */
+    /* HERO — photo dominant, warm, object on cream */
     .hero {
       min-height: 100svh;
       padding-top: 44px;
       display: grid;
-      grid-template-rows: 1fr auto;
-      background: var(--black);
-      position: relative;
-      overflow: hidden;
+      grid-template-columns: 1fr 1fr;
+      background: var(--cream);
     }
 
-    /* Grayscale gradient — the identity element, center of page */
-    .hero-gradient {
+    @media (max-width: 768px) { .hero { grid-template-columns: 1fr; } }
+
+    .hero-photo {
+      position: relative; overflow: hidden;
+      background: var(--parchment);
+      min-height: 60vh;
+    }
+
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      mix-blend-mode: multiply;
+      filter: sepia(0.2) contrast(1.1);
+    }
+
+    /* Orange rule — structural element */
+    .hero-photo::after {
+      content: '';
       position: absolute;
-      top: 44px; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(255,255,255,0.012) 20%,
-        rgba(255,255,255,0.035) 40%,
-        rgba(255,255,255,0.055) 50%,
-        rgba(255,255,255,0.035) 60%,
-        rgba(255,255,255,0.012) 80%,
-        transparent 100%
-      );
-      pointer-events: none;
+      top: 0; left: 0; bottom: 0;
+      width: 4px;
+      background: var(--orange);
     }
 
-    .hero-content {
+    .hero-type {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 40px 56px;
-      position: relative;
+      padding: 64px 48px;
+      border-left: 1px solid var(--parchment);
     }
 
-    /* German subtitle — small, withholding */
-    .hero-de {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 300;
-      color: var(--mid);
-      letter-spacing: 0.14em;
-      text-transform: lowercase;
-      margin-bottom: 20px;
-    }
-
-    /* Main display — light weight, massive, TE restraint */
-    .hero-display {
-      font-size: clamp(56px, 13vw, 140px);
-      font-weight: 200;
-      line-height: 0.92;
-      letter-spacing: -0.04em;
-      color: var(--off-white);
-      margin-bottom: 40px;
-    }
-
-    .hero-display .dim { color: #3a3a38; }
-    .hero-display .signal { color: var(--signal); }
-
-    /* Bottom strip — TE-style metadata row */
-    .hero-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid #1e1e1c;
-      padding: 18px 40px;
-      gap: 1px;
-      position: relative;
-    }
-
-    .hero-strip-cell {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      color: #3a3a38;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      line-height: 1.8;
-      padding-right: 24px;
-    }
-
-    .hero-strip-cell strong { color: var(--mid); font-weight: 400; display: block; }
-
-    /* SPEC ROW — TE feature grid style */
-    .spec-section {
-      padding: 0;
-      border-top: 1px solid #1e1e1c;
-    }
-
-    .spec-header {
-      padding: 20px 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid #1a1a18;
-    }
-
-    .spec-header-label {
+    .hero-eyebrow {
       font-family: var(--font-mono); font-size: 9px; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid);
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);
+      margin-bottom: 24px;
     }
 
-    .spec-header-de {
-      font-family: var(--font-mono); font-size: 9px; font-weight: 300;
-      color: #3a3a38; letter-spacing: 0.08em;
+    .hero-display {
+      font-family: var(--font-cond);
+      font-size: clamp(56px, 10vw, 108px);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 32px;
     }
 
-    /* Dense spec grid — TE-style */
-    .spec-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: #1a1a18;
+    .hero-display .light { font-weight: 300; color: var(--warm-mid); }
+    .hero-display .orange { color: var(--orange); }
+
+    .hero-body {
+      font-size: 14px; font-weight: 300; line-height: 1.75;
+      color: var(--warm-mid); max-width: 42ch;
+      margin-bottom: 48px;
     }
 
-    @media (max-width: 640px) { .spec-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .spec-cell {
-      background: var(--black);
-      padding: 20px 24px;
-      display: flex; flex-direction: column; gap: 6px;
+    .hero-strip {
+      display: flex; gap: 32px;
+      border-top: 1px solid var(--parchment);
+      padding-top: 24px;
     }
 
-    .spec-key {
-      font-family: var(--font-mono); font-size: 8px; font-weight: 500;
-      letter-spacing: 0.16em; text-transform: uppercase; color: #3a3a38;
-    }
-
-    .spec-val {
-      font-family: var(--font-mono); font-size: 12px; font-weight: 300;
-      color: var(--off-white); letter-spacing: 0.01em; line-height: 1.4;
-    }
-
-    .spec-val.alert { color: var(--signal); }
-
-    /* PHOTOGRAPHY — full-bleed, cinematic */
-    .photo-section { background: var(--black); }
-
-    .photo-full {
-      width: 100%;
-      position: relative; overflow: hidden;
-    }
-    .photo-full img { width: 100%; display: block; filter: contrast(1.05); }
-
-    .photo-caption {
-      padding: 14px 40px;
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid #1e1e1c;
-    }
-
-    .photo-caption-text {
+    .hero-strip-item {
       font-family: var(--font-mono); font-size: 9px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: #3a3a38;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--warm-mid); line-height: 1.8;
     }
+    .hero-strip-item strong { color: var(--black); font-weight: 500; display: block; }
 
-    .photo-caption-num {
-      font-family: var(--font-mono); font-size: 9px;
-      color: var(--signal); letter-spacing: 0.08em;
-    }
-
-    .photo-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #1a1a18; }
-
-    /* POSITIONING — the brand statement section */
-    .position-section {
-      padding: 96px 40px;
-      max-width: 960px; margin: 0 auto;
-      border-top: 1px solid #1e1e1c;
-    }
+    /* SECTIONS */
+    .section { padding: 96px 48px; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section + .section { border-top: 1px solid var(--parchment); }
 
     .section-label {
       font-family: var(--font-mono); font-size: 9px; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid);
-      margin-bottom: 64px;
-      display: flex; align-items: center; gap: 24px;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);
+      margin-bottom: 56px;
+      display: flex; align-items: center; gap: 20px;
     }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--parchment); }
 
-    .section-label::after {
-      content: '';
-      flex: 1; height: 1px; background: #1e1e1c;
-    }
-
+    /* POSITIONING */
     .position-lead {
-      font-size: clamp(24px, 4vw, 40px);
-      font-weight: 200;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: var(--off-white);
-      max-width: 22ch;
+      font-family: var(--font-cond);
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--black);
+      max-width: 20ch;
       margin-bottom: 48px;
     }
 
     .position-body {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--mid);
-      max-width: 62ch;
-      column-count: 2;
-      column-gap: 48px;
+      font-size: 15px; font-weight: 300;
+      line-height: 1.8; color: var(--warm-mid);
+      max-width: 58ch;
+      margin-bottom: 64px;
     }
 
-    @media (max-width: 640px) { .position-body { column-count: 1; } }
-
-    /* TRAITS — horizontal rule list */
-    .traits {
-      margin-top: 80px;
-      border-top: 1px solid #1e1e1c;
-    }
+    /* Traits */
+    .traits { border-top: 2px solid var(--black); }
 
     .trait {
       display: grid;
-      grid-template-columns: 160px 1fr 80px;
+      grid-template-columns: 160px 1fr 60px;
       gap: 32px;
       align-items: baseline;
-      padding: 22px 0;
-      border-bottom: 1px solid #1a1a18;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--parchment);
     }
 
     .trait-name {
       font-family: var(--font-mono); font-size: 9px; font-weight: 500;
-      letter-spacing: 0.16em; text-transform: uppercase; color: var(--off-white);
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--black);
+    }
+    .trait-desc { font-size: 13px; font-weight: 300; color: var(--warm-mid); line-height: 1.6; }
+    .trait-idx { font-family: var(--font-mono); font-size: 9px; color: var(--parchment); text-align: right; }
+
+    /* PHOTO SECTION */
+    .photo-section { padding: 0; background: var(--black); }
+
+    .photo-grid-3 {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 2px;
     }
 
-    .trait-desc {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 300;
-      color: var(--mid); line-height: 1.6;
+    @media (max-width: 640px) { .photo-grid-3 { grid-template-columns: 1fr; } }
+
+    .photo-cell { position: relative; overflow: hidden; }
+    .photo-cell img {
+      width: 100%; display: block;
+      filter: sepia(0.15) contrast(1.05);
+    }
+    .photo-cell-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 12px 16px;
+      background: linear-gradient(to top, rgba(26,21,16,0.8), transparent);
+      font-family: var(--font-mono); font-size: 9px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.5);
     }
 
-    .trait-idx {
-      font-family: var(--font-mono); font-size: 9px; font-weight: 300;
-      color: #2e2e2c; text-align: right; letter-spacing: 0.06em;
-    }
-
-    /* COLOR SYSTEM */
-    .color-section {
-      border-top: 1px solid #1e1e1c;
-      padding: 96px 40px;
-      max-width: 960px; margin: 0 auto;
-    }
+    /* COLOR */
+    .color-system { margin-top: 48px; }
 
     .color-band {
       height: 80px; display: flex; align-items: flex-end;
-      padding: 12px 20px; margin-bottom: 1px;
+      padding: 12px 20px; margin-bottom: 2px;
     }
 
     .color-band-label {
@@ -290,128 +209,140 @@
       letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.6;
     }
 
-    .color-row { display: flex; gap: 1px; margin-bottom: 1px; }
+    .color-row { display: flex; gap: 2px; }
     .color-cell { flex: 1; height: 56px; display: flex; align-items: flex-end; padding: 8px 10px; }
     .color-cell-label { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5; }
 
-    /* TYPE SYSTEM */
-    .type-section {
-      border-top: 1px solid #1e1e1c;
-      padding: 96px 40px;
-      max-width: 960px; margin: 0 auto;
+    /* Note block */
+    .color-note {
+      margin-top: 16px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 300;
+      color: var(--warm-mid); line-height: 1.8;
+      padding: 16px 20px;
+      border-left: 3px solid var(--orange);
+      background: var(--orange-pale);
     }
+
+    /* TYPE */
+    .type-system { margin-top: 48px; }
 
     .type-row {
-      padding: 40px 0;
-      border-bottom: 1px solid #1a1a18;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--parchment);
       display: grid;
       grid-template-columns: 100px 1fr;
-      gap: 40px;
-      align-items: start;
+      gap: 40px; align-items: start;
     }
-
-    .type-row:first-child { border-top: 1px solid #1a1a18; }
+    .type-row:first-child { border-top: 1px solid var(--parchment); }
 
     .type-meta {
-      font-family: var(--font-mono); font-size: 9px; color: #3a3a38;
+      font-family: var(--font-mono); font-size: 9px; color: var(--warm-mid);
       letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8;
-      padding-top: 6px;
+      padding-top: 4px;
     }
 
     .t-display {
-      font-size: clamp(48px, 12vw, 120px);
-      font-weight: 200; line-height: 0.88;
-      letter-spacing: -0.04em; color: var(--off-white);
+      font-family: var(--font-cond);
+      font-size: clamp(48px, 11vw, 112px);
+      font-weight: 700; line-height: 0.88;
+      letter-spacing: -0.02em; color: var(--black);
     }
-
-    .t-display .dim { color: #2e2e2c; }
-    .t-display .signal { color: var(--signal); }
+    .t-display .light { font-weight: 300; color: var(--warm-mid); }
+    .t-display .orange { color: var(--orange); }
 
     .t-headline {
-      font-size: clamp(22px, 4vw, 36px);
-      font-weight: 200; line-height: 1.1;
-      letter-spacing: -0.02em; color: var(--off-white);
+      font-family: var(--font-cond);
+      font-size: clamp(22px, 4vw, 38px);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -0.01em; color: var(--black);
     }
 
     .t-body-text {
-      font-size: 14px; font-weight: 300;
-      line-height: 1.8; color: var(--mid); max-width: 58ch;
+      font-size: 15px; font-weight: 300;
+      line-height: 1.8; color: var(--warm-mid); max-width: 58ch;
     }
 
     .t-mono-text {
       font-family: var(--font-mono); font-size: 11px;
-      font-weight: 300; line-height: 1.7; color: var(--mid);
+      font-weight: 300; line-height: 1.7; color: var(--warm-mid);
     }
 
     .t-label-text {
-      font-family: var(--font-mono); font-size: 9px;
-      font-weight: 500; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--signal);
+      font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);
     }
 
-    /* COMPOSITION — dark hero mock */
-    .comp-section { border-top: 1px solid #1e1e1c; }
-
-    .comp-hero {
-      padding: 96px 40px;
+    /* COMPOSITIONS */
+    .comp-dark {
       background: var(--black);
-      position: relative;
-      overflow: hidden;
+      padding: 96px 48px;
     }
 
-    .comp-hero-inner { max-width: 960px; margin: 0 auto; }
+    .comp-dark-inner { max-width: 960px; margin: 0 auto; }
 
-    .comp-de {
-      font-family: var(--font-mono); font-size: 9px; font-weight: 300;
-      color: #2e2e2c; letter-spacing: 0.14em; margin-bottom: 24px;
+    .comp-eyebrow {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);
+      margin-bottom: 28px;
     }
 
     .comp-headline {
-      font-size: clamp(40px, 10vw, 96px);
-      font-weight: 200; line-height: 0.92;
-      letter-spacing: -0.03em; color: var(--off-white);
+      font-family: var(--font-cond);
+      font-size: clamp(40px, 9vw, 96px);
+      font-weight: 700; line-height: 0.88;
+      letter-spacing: -0.02em; color: var(--cream);
       margin-bottom: 64px;
     }
 
-    .comp-headline .signal { color: var(--signal); }
-    .comp-headline .dim { color: #2e2e2c; }
+    .comp-headline .dim { color: #3a3228; font-weight: 300; }
+    .comp-headline .orange { color: var(--orange); }
 
     .comp-data {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: #1a1a18;
-      border-top: 1px solid #1e1e1c;
+      gap: 1px; background: #2a2018;
+      border: 1px solid #2a2018;
     }
 
     @media (max-width: 600px) { .comp-data { grid-template-columns: repeat(2, 1fr); } }
 
     .comp-data-cell {
-      background: var(--black);
-      padding: 20px 24px;
+      background: var(--black); padding: 20px 24px;
     }
 
     .comp-data-label {
       font-family: var(--font-mono); font-size: 8px; font-weight: 500;
-      letter-spacing: 0.18em; text-transform: uppercase; color: #3a3a38;
+      letter-spacing: 0.18em; text-transform: uppercase; color: #4a4035;
       margin-bottom: 6px;
     }
 
     .comp-data-value {
-      font-family: var(--font-mono); font-size: 13px; font-weight: 300;
-      color: var(--off-white);
+      font-family: var(--font-mono); font-size: 13px; font-weight: 300; color: var(--cream);
+    }
+    .comp-data-value.alert { color: var(--orange); }
+
+    /* Warning strip — orange bar for alert state */
+    .warning-strip {
+      background: var(--orange);
+      padding: 12px 48px;
+      display: flex; align-items: center; justify-content: space-between;
     }
 
-    .comp-data-value.alert { color: var(--signal); }
+    .warning-text {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--black);
+    }
+
+    .warning-label {
+      font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase; color: rgba(26,21,16,0.5);
+    }
 
     /* LOGO */
-    .logo-section {
-      border-top: 1px solid #1e1e1c;
-      padding: 96px 40px;
-      max-width: 960px; margin: 0 auto;
-    }
+    .logo-section { padding: 96px 48px; }
+    .logo-section-inner { max-width: 960px; margin: 0 auto; }
 
-    .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #1a1a18; margin-top: 48px; }
+    .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px; }
 
     .logo-cell {
       display: flex; align-items: center; justify-content: center;
@@ -419,32 +350,35 @@
     }
 
     .logotype-v7 {
-      font-family: var(--font-mono); font-size: 20px; font-weight: 300;
-      letter-spacing: 0.04em;
+      font-family: var(--font-cond); font-size: 28px; font-weight: 700;
+      letter-spacing: -0.01em;
     }
+    .logotype-v7 em { font-style: normal; color: var(--orange); }
+    .logotype-v7.on-cream { color: var(--black); }
+    .logotype-v7.on-black { color: var(--cream); }
+    .logotype-v7.on-orange { color: var(--black); }
+    .logotype-v7.on-orange em { color: rgba(26,21,16,0.4); font-weight: 300; }
 
-    .logotype-v7 em { font-style: normal; color: var(--signal); }
-
-    .logotype-v7.on-white { color: var(--black); }
-    .logotype-v7.on-black { color: var(--off-white); }
-    .logotype-v7.on-signal { color: rgba(255,255,255,0.9); }
-    .logotype-v7.on-signal em { color: rgba(255,255,255,0.4); }
+    .logo-sub {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase; margin-top: 6px;
+    }
 
     /* FOOTER */
     footer {
-      border-top: 1px solid #1e1e1c;
-      padding: 28px 40px;
+      background: var(--black);
+      padding: 28px 48px;
       display: flex; justify-content: space-between; align-items: center;
     }
 
     .footer-label {
-      font-family: var(--font-mono); font-size: 9px; color: #2e2e2c;
+      font-family: var(--font-mono); font-size: 9px; color: #3a3228;
       letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.8;
     }
 
     .footer-v {
-      font-family: var(--font-mono); font-size: 11px; font-weight: 300;
-      color: #2e2e2c; letter-spacing: 0.1em;
+      font-family: var(--font-cond); font-size: 40px; font-weight: 700;
+      color: #2a2018; letter-spacing: -0.02em;
     }
   </style>
 </head>
@@ -453,7 +387,7 @@
 <nav>
   <div class="nav-logo"><em>F</em>ormant</div>
   <div class="nav-right">
-    <div class="nav-tag">V7 · Restraint</div>
+    <div class="nav-tag">V7 · Industrial Warm</div>
     <ul class="nav-links">
       <li><a href="#brand">Brand</a></li>
       <li><a href="#photo">Photo</a></li>
@@ -465,172 +399,153 @@
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO — 2-column, photo left, type right -->
 <section class="hero">
-  <div class="hero-gradient"></div>
-  <div class="hero-content">
-    <div class="hero-de">das signal. die maschine. die konsequenz.</div>
-    <div class="hero-display">
-      <div>physical</div>
-      <div class="dim">operations</div>
-      <div class="signal">know.</div>
-    </div>
+  <div class="hero-photo">
+    <img src="../v6/v6-photo-1-robot-overhead.png" alt="Robot overhead">
   </div>
-  <div class="hero-strip">
-    <div class="hero-strip-cell"><strong>V7 · Restraint</strong>March 2026</div>
-    <div class="hero-strip-cell"><strong>formant.ai</strong>Physical AI</div>
-    <div class="hero-strip-cell"><strong>Reference</strong>Teenage Engineering</div>
-    <div class="hero-strip-cell"><strong>Principle</strong>Obvious only in retrospect</div>
+  <div class="hero-type">
+    <div class="hero-eyebrow">Physical AI · Fleet Operations</div>
+    <div class="hero-display">
+      SIGNAL<br>
+      <span class="light">before</span><br>
+      <span class="orange">failure.</span>
+    </div>
+    <p class="hero-body">Formant monitors the physical world at frequencies no human operator can sustain. The anomaly was always there. We found it first.</p>
+    <div class="hero-strip">
+      <div class="hero-strip-item"><strong>V7</strong>Industrial Warm</div>
+      <div class="hero-strip-item"><strong>Accent</strong>#D95F1A</div>
+      <div class="hero-strip-item"><strong>Ref</strong>Braun · Caterpillar</div>
+    </div>
   </div>
 </section>
 
-<!-- SPEC GRID -->
-<section class="spec-section">
-  <div class="spec-header">
-    <div class="spec-header-label">System capabilities</div>
-    <div class="spec-header-de">eine vielzahl von funktionen.</div>
-  </div>
-  <div class="spec-grid">
-    <div class="spec-cell"><div class="spec-key">Data streams</div><div class="spec-val">47 simultaneous</div></div>
-    <div class="spec-cell"><div class="spec-key">Detection latency</div><div class="spec-val">&lt; 200ms</div></div>
-    <div class="spec-cell"><div class="spec-key">Anomaly score</div><div class="spec-val alert">0.94 — active</div></div>
-    <div class="spec-cell"><div class="spec-key">Predicted failure</div><div class="spec-val alert">72 hours</div></div>
-    <div class="spec-cell"><div class="spec-key">Asset types</div><div class="spec-val">Fleet · Field · Fixed</div></div>
-    <div class="spec-cell"><div class="spec-key">Integrations</div><div class="spec-val">Modular · Open API</div></div>
-    <div class="spec-cell"><div class="spec-key">Signal processing</div><div class="spec-val">Continuous</div></div>
-    <div class="spec-cell"><div class="spec-key">Deployment</div><div class="spec-val">Edge + Cloud</div></div>
-    <div class="spec-cell"><div class="spec-key">Alert routing</div><div class="spec-val">Ops + Executive</div></div>
-    <div class="spec-cell"><div class="spec-key">History</div><div class="spec-val">Rolling 90 days</div></div>
-    <div class="spec-cell"><div class="spec-key">Baseline model</div><div class="spec-val">Per-asset · Auto-learn</div></div>
-    <div class="spec-cell"><div class="spec-key">Uptime</div><div class="spec-val">99.97%</div></div>
+<!-- POSITIONING -->
+<section class="section" id="brand">
+  <div class="section-inner">
+    <div class="section-label">01 — Brand Positioning</div>
+
+    <div class="position-lead">The warning before the warning.</div>
+
+    <p class="position-body">V7 draws from industrial design — Braun's material honesty, the visual language of heavy machinery, the warm neutral palette of a working environment. Orange is not a choice for style. In industrial contexts orange is the pre-failure signal: not danger (red), not safe (green) — but the moment between them. Formant lives precisely there. The cream-warm palette grounds the brand in the physical world. This is not software. This is a system that understands consequence.</p>
+
+    <div class="traits">
+      <div class="trait">
+        <div class="trait-name">Industrial</div>
+        <div class="trait-desc">Braun material honesty. Heavy machinery visual language. Warm neutrals that belong in a working environment.</div>
+        <div class="trait-idx">01/04</div>
+      </div>
+      <div class="trait">
+        <div class="trait-name">Pre-failure</div>
+        <div class="trait-desc">Orange is the color between safe and danger. Formant exists in that interval — finding it before it matters.</div>
+        <div class="trait-idx">02/04</div>
+      </div>
+      <div class="trait">
+        <div class="trait-name">Condensed</div>
+        <div class="trait-desc">Compressed type carries urgency without shouting. Information density without aggression.</div>
+        <div class="trait-idx">03/04</div>
+      </div>
+      <div class="trait">
+        <div class="trait-name">Physical</div>
+        <div class="trait-desc">A warm palette that insists on the real world. This system touches machines, not interfaces.</div>
+        <div class="trait-idx">04/04</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- PHOTOGRAPHY -->
 <section class="photo-section" id="photo">
-  <div class="photo-full" style="aspect-ratio: 2.4;">
-    <img src="v7-photo-a-gripper-overhead.png" alt="Gripper overhead">
+  <div class="warning-strip">
+    <div class="warning-text">04 — Photography Direction</div>
+    <div class="warning-label">Object · Portrait · Physical</div>
   </div>
-  <div class="photo-caption">
-    <div class="photo-caption-text">Overhead · End effector · Object on white</div>
-    <div class="photo-caption-num">01 / 03</div>
-  </div>
-  <div class="photo-grid-2">
-    <div>
-      <div class="photo-full" style="aspect-ratio: 1.3;">
-        <img src="v7-photo-b-robot-underbelly.png" alt="Robot underbelly">
-      </div>
-      <div class="photo-caption">
-        <div class="photo-caption-text">Upshot · Structure · Architectural</div>
-        <div class="photo-caption-num">02 / 03</div>
-      </div>
+  <div class="photo-grid-3">
+    <div class="photo-cell" style="aspect-ratio: 1;">
+      <img src="../v6/v6-photo-1-robot-overhead.png" alt="Robot overhead">
+      <div class="photo-cell-label">Overhead · Robot chassis</div>
     </div>
-    <div>
-      <div class="photo-full" style="aspect-ratio: 1.3;">
-        <img src="v7-photo-c-drone-ground.png" alt="Drone ground level">
-      </div>
-      <div class="photo-caption">
-        <div class="photo-caption-text">Ground level · Autonomous vehicle · Presence</div>
-        <div class="photo-caption-num">03 / 03</div>
-      </div>
+    <div class="photo-cell" style="aspect-ratio: 0.75;">
+      <img src="../v7/v7-photo-b-robot-underbelly.png" alt="Upshot structure">
+      <div class="photo-cell-label">Upshot · Structure</div>
     </div>
-  </div>
-</section>
-
-<!-- BRAND POSITIONING -->
-<section class="position-section" id="brand">
-  <div class="section-label">01 — Brand Positioning</div>
-
-  <div class="position-lead">The anomaly was always there. Formant was listening.</div>
-
-  <p class="position-body">V7 applies Teenage Engineering restraint to the Formant brand system. Where V6 was bold and typographically aggressive, V7 withholds. Dark-dominant. Light-weight type at large scale. German-language labels as quiet misdirection. The spec grid borrows TE's product page density — a wall of capability stated plainly, without hierarchy. The brand idea is the same; the register is lower. More unsettling. More correct.<br><br>The grayscale gradient — the only decorative element — is the identity itself. Everything else earns its place or it's not there.</p>
-
-  <div class="traits">
-    <div class="trait">
-      <div class="trait-name">Withholding</div>
-      <div class="trait-desc">Doesn't explain what it doesn't need to. Precision implies depth. You sense more beneath the surface.</div>
-      <div class="trait-idx">01 / 04</div>
-    </div>
-    <div class="trait">
-      <div class="trait-name">Precise</div>
-      <div class="trait-desc">Specific units. Named anomalies. Named intervals. The specificity is the confidence.</div>
-      <div class="trait-idx">02 / 04</div>
-    </div>
-    <div class="trait">
-      <div class="trait-name">Industrial</div>
-      <div class="trait-desc">Real machines. Real consequence. Not a SaaS dashboard — a system that understands weight.</div>
-      <div class="trait-idx">03 / 04</div>
-    </div>
-    <div class="trait">
-      <div class="trait-name">Earned</div>
-      <div class="trait-desc">Nothing decorative. Every element justified by function. Obvious only in retrospect.</div>
-      <div class="trait-idx">04 / 04</div>
+    <div class="photo-cell" style="aspect-ratio: 0.75;">
+      <img src="../v6/v6-photo-2-sensor-bw.png" alt="Sensor architectural">
+      <div class="photo-cell-label">Architectural · Sensor array</div>
     </div>
   </div>
 </section>
 
 <!-- COLOR -->
-<section class="color-section" id="color">
-  <div class="section-label">02 — Color System</div>
-  <p style="font-family: var(--font-mono); font-size: 11px; font-weight: 300; color: var(--mid); line-height: 1.8; max-width: 62ch; margin-bottom: 0;">Near-black as foundation. The grayscale gradient — a barely-there centre brightness — is the only ambient element. Signal red appears once per composition: one word, one rule, or one data point. Never twice.</p>
+<section class="section" id="color">
+  <div class="section-inner">
+    <div class="section-label">02 — Color System</div>
+    <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--warm-mid); max-width: 56ch;">Warm cream foundation — the color of paper, linen, and physical materials. Deep warm black. Orange as the single active element. A system that feels material, not digital.</p>
 
-  <div style="margin-top: 48px;">
-    <div class="color-band" style="background: #0f0f0e;">
-      <div class="color-band-label" style="color: #3a3a38;">Black · #0f0f0e · Foundation</div>
-    </div>
-    <div class="color-band" style="background: var(--near-black); height: 48px;">
-      <div class="color-band-label" style="color: #3a3a38;">Near black · #1c1c1a · Structure</div>
-    </div>
-    <div class="color-band" style="background: var(--signal); height: 56px;">
-      <div class="color-band-label" style="color: rgba(255,255,255,0.8);">Signal · #c0392b · Once. Only once.</div>
-    </div>
-    <div class="color-row" style="margin-top: 0;">
-      <div class="color-cell" style="background: var(--mid);"><div class="color-cell-label" style="color: var(--off-white);">Mid<br>#737370</div></div>
-      <div class="color-cell" style="background: var(--light);"><div class="color-cell-label" style="color: #3a3a38;">Light<br>#b0b0aa</div></div>
-      <div class="color-cell" style="background: var(--pale);"><div class="color-cell-label" style="color: var(--mid);">Pale<br>#e4e4de</div></div>
-      <div class="color-cell" style="background: var(--off-white);"><div class="color-cell-label" style="color: var(--mid);">Off-white<br>#f6f6f2</div></div>
+    <div class="color-system">
+      <div class="color-band" style="background: var(--black); margin-top: 40px;">
+        <div class="color-band-label" style="color: #4a4035;">Black · #1a1510 · Warm-tinted, not cold</div>
+      </div>
+      <div class="color-band" style="background: var(--orange); height: 64px;">
+        <div class="color-band-label" style="color: rgba(26,21,16,0.7);">Orange · #d95f1a · Pre-failure · Industrial signal</div>
+      </div>
+      <div class="color-row" style="margin-top: 0;">
+        <div class="color-cell" style="background: var(--cream); border: 1px solid var(--parchment);"><div class="color-cell-label" style="color: var(--warm-mid);">Cream<br>#f5f0e8</div></div>
+        <div class="color-cell" style="background: var(--parchment);"><div class="color-cell-label" style="color: var(--warm-mid);">Parchment<br>#ede6d6</div></div>
+        <div class="color-cell" style="background: var(--warm-mid);"><div class="color-cell-label" style="color: var(--cream);">Warm mid<br>#9c9080</div></div>
+        <div class="color-cell" style="background: var(--orange-pale); border: 1px solid #e8d0b8;"><div class="color-cell-label" style="color: var(--warm-mid);">Orange pale<br>#f5e4d4</div></div>
+      </div>
+      <div class="color-note">
+        Orange appears as: the left-edge rule on hero photography, one word in the headline, the alert data value, the warning strip background. Not as decoration. Only as signal.
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TYPOGRAPHY -->
-<section class="type-section" id="type">
-  <div class="section-label">03 — Typography</div>
-  <p style="font-family: var(--font-mono); font-size: 11px; font-weight: 300; color: var(--mid); line-height: 1.8; max-width: 62ch; margin-bottom: 0;">Light weight as the primary weight — 200 for display, 300 for body, 400 for mono data. The restraint comes from the weight, not the size. Mono for everything that is data, system, or label.</p>
+<section class="section" id="type">
+  <div class="section-inner">
+    <div class="section-label">03 — Typography</div>
+    <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--warm-mid); max-width: 56ch;">IBM Plex Sans Condensed at display size — compressed, urgent, dense. Light weight for prose. Mono for all data. Condensed type is the typographic equivalent of a warning label — maximum information, minimum footprint.</p>
 
-  <div style="margin-top: 48px;">
-    <div class="type-row">
-      <div class="type-meta">Display<br>Light 200<br>−4% tracking</div>
-      <div class="t-display">signal<br><span class="dim">found.</span></div>
-    </div>
-    <div class="type-row">
-      <div class="type-meta">Headline<br>Light 200<br>−2% tracking</div>
-      <div class="t-headline">Physical AI for operations<br>that can't afford to miss it.</div>
-    </div>
-    <div class="type-row">
-      <div class="type-meta">Body<br>Light 300<br>1.8 leading</div>
-      <div class="t-body-text">Unit 14's bearing temperature deviated 12 degrees from its 7-day baseline at 14:31 PST. Formant escalated before the operator noticed. Before the maintenance window closed. Before the failure began.</div>
-    </div>
-    <div class="type-row">
-      <div class="type-meta">Mono<br>Data · UI<br>Light 300</div>
-      <div class="t-mono-text">UNIT_14 · BEARING_TEMP_DELTA +12.4°C<br>ANOMALY_SCORE 0.94 · RISING<br>PREDICTED_FAILURE 72H · ESCALATED 14:32:07 PST</div>
-    </div>
-    <div class="type-row">
-      <div class="type-meta">Label<br>Mono 500<br>+20% tracking</div>
-      <div class="t-label-text">Physical Operations · Fleet Monitor · Active</div>
+    <div class="type-system">
+      <div class="type-row">
+        <div class="type-meta">Display<br>Cond Bold 700<br>−2% tracking</div>
+        <div class="t-display">SIGNAL<br><span class="light">found.</span></div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Headline<br>Cond 400<br>−1% tracking</div>
+        <div class="t-headline">Physical AI for operations<br>that can't afford to miss it.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Body<br>Light 300<br>1.8 leading</div>
+        <div class="t-body-text">Unit 14's bearing temperature deviated 12 degrees from its 7-day baseline at 14:31 PST. Formant escalated before the operator noticed. Before the maintenance window closed. Before the failure began.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Mono<br>Data · UI<br>Light 300</div>
+        <div class="t-mono-text">UNIT_14 · BEARING_TEMP_DELTA +12.4°C<br>ANOMALY_SCORE 0.94 · PREDICTED_FAILURE 72H<br>ESCALATED 14:32:07 PST · PRIORITY HIGH</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Label<br>Mono 500<br>+20% tracking</div>
+        <div class="t-label-text">Physical Operations · Fleet Monitor · Active</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- COMPOSITION -->
-<section class="comp-section" id="comp">
-  <div class="comp-hero">
-    <div class="comp-hero-inner">
-      <div class="comp-de">bereits bekannt.</div>
+<section id="comp">
+  <div class="warning-strip">
+    <div class="warning-text">Unit 14 · Anomaly Active · +12.4°C above baseline</div>
+    <div class="warning-label">Escalated 14:32:07 PST</div>
+  </div>
+  <div class="comp-dark">
+    <div class="comp-dark-inner">
+      <div class="comp-eyebrow">Physical AI · Fleet Monitor · Active</div>
       <div class="comp-headline">
-        <div>already</div>
+        <div>ALREADY</div>
         <div class="dim">knew</div>
-        <div class="signal">.</div>
+        <div class="orange">.</div>
       </div>
       <div class="comp-data">
         <div class="comp-data-cell">
@@ -656,23 +571,35 @@
 
 <!-- LOGO -->
 <section class="logo-section" id="logo">
-  <div class="section-label">04 — Logo · V7</div>
-  <p style="font-family: var(--font-mono); font-size: 11px; font-weight: 300; color: var(--mid); line-height: 1.8; max-width: 62ch;">Mono-weight wordmark — the F shifts to signal, the rest recedes. In V7 the type is mono, not sans, reflecting the system's technical register. The F-waveform mark direction remains the structural next step.</p>
-  <div class="logo-grid">
-    <div class="logo-cell" style="background: var(--off-white);">
-      <div class="logotype-v7 on-white"><em>F</em>ormant</div>
-    </div>
-    <div class="logo-cell" style="background: var(--black);">
-      <div class="logotype-v7 on-black"><em>F</em>ormant</div>
-    </div>
-    <div class="logo-cell" style="background: var(--signal);">
-      <div class="logotype-v7 on-signal"><em>F</em>ormant</div>
+  <div class="logo-section-inner">
+    <div class="section-label">05 — Logo · V7</div>
+    <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--warm-mid); max-width: 56ch;">Condensed bold wordmark — the compressed weight carries the industrial register. Orange F on dark is the primary lockup. The F-waveform mark direction is the structural next step.</p>
+
+    <div class="logo-grid">
+      <div class="logo-cell" style="background: var(--cream); border: 1px solid var(--parchment);">
+        <div>
+          <div class="logotype-v7 on-cream"><em>F</em>ormant</div>
+          <div class="logo-sub" style="color: var(--warm-mid);">Physical AI</div>
+        </div>
+      </div>
+      <div class="logo-cell" style="background: var(--black);">
+        <div>
+          <div class="logotype-v7 on-black"><em>F</em>ormant</div>
+          <div class="logo-sub" style="color: #4a4035;">Physical AI</div>
+        </div>
+      </div>
+      <div class="logo-cell" style="background: var(--orange);">
+        <div>
+          <div class="logotype-v7 on-orange"><em>F</em>ormant</div>
+          <div class="logo-sub" style="color: rgba(26,21,16,0.5);">Physical AI</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-label">Formant Brand V7 · Restraint<br>March 2026 · ~/Projects/formant-brand/v7/</div>
+  <div class="footer-label">Formant Brand V7 · Industrial Warm<br>March 2026 · ~/Projects/formant-brand/v7/</div>
   <div class="footer-v">V7</div>
 </footer>
 
